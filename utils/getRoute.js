@@ -1,4 +1,4 @@
-let match = function (currentHash, routePool) {
+let getRoute = function (currentHash, routePool) {
 
     let currentRoute
 
@@ -11,4 +11,4 @@ let match = function (currentHash, routePool) {
     return currentRoute
 }
 
-export default match
+export default getRoute
