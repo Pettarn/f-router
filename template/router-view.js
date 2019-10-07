@@ -1,7 +1,12 @@
-let routerView = {}
+export default {
+    name: 'router-view',
+    props: {
+        
+    },
 
-routerView.install = function (Vue) {
-    Vue.component('router-view', this.router.match(location.hash, this.router.routes))
+    render (createElement, { props, children, parent, data }) {
+        return createElement()
+    }
 }
 
-export default routerView
+
