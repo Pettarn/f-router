@@ -2,8 +2,14 @@
                 
 #### 如何匹配 hash字符串 和 component ，如果存在子路由的时候怎么办？ 把每一条路径都遍历一遍，每一条路径对应单独地一个组件，或者利用'/'搞事情  暂时先不考虑这个了，先写一层路由，跑起来再说。       
 #### 如果用户手动更改 hash 后面字符串的值，怎么实时地更新视图？ getter和setter  或者直接用 Vue.observable(obj)      
-#### 如果router-view里面套了router-view 怎么办？ 也就是如何在vue组件里面挂载多个不同的router-view？  因此不要注册全局的router-view , 而是用Vue.extend创建Vue子类，挂载到以当前路由路径为id的dom节点上  可是这样依旧不行，因为平级别的路由肯定会更换，这就要保证router-view组件是需要做到响应式的，但是这时候如果出现了子路由，那么就会造成父级别的router-view和子级别的router-view状态相同，甚至有可能造成递归  这时候我突然想到 vue 是如何实现组件复用的？也许会得到启发。vue每个.vue文件相当于一个构造函数，所以每个组件实例根本不会互相影响。
 
-#### 现在我搞不懂vue创建实例的选项里面的那个render到底是个什么东西，还有createElement。render直接return 一个createElement函数的调用，那为什么不直接用createElement呢？还有如果这个render是作者内部定义的函数，那我是不是可以把它理解为一个钩子函数。之所以会有这些疑问，是因为我不知道该怎么编程式地写router-view这个组件了。也许我可以看看如果换成一个普通的组件，有没有人之前用这种写法写过，不用jsx也不用.vue。
+    router-view实现思路：
+    拿到当前的 hash 值
+    和route表匹配，得到对应的组件
+    渲染
+    (问题：需要访问this.$router和this.$route)        
 
-#### 我发现了Vue.component()注册了全局组件，这个作用就相当于定义了一个组件的构造函数，两个参数，第一个参数是它的标签名，第二个参数是一个组件构造函数，然后vue官网createElement完整示例里面有render的普通组件定义方式  官方文档函数式组件
+    vm.$router实现思路:
+    install的时候register进去,但是￥router只有在router实例生成之后才会产生
+
+
