@@ -10,6 +10,6 @@
     (问题：需要访问this.$router和this.$route)        
 
     vm.$router实现思路:
-    install的时候register进去,但是￥router只有在router实例生成之后才会产生
+    install的时候register进去,但是$router只有在router实例生成之后才会产生beforeCreate
 
 
