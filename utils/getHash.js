@@ -1,5 +1,5 @@
 let getHash = function () {
-    let currentHash = location.hash
+    let currentHash = location.hash.slice(1)
     return currentHash
 }
 

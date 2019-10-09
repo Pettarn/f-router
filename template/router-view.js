@@ -4,7 +4,7 @@ export default {
         
     },
 
-    render (createElement, { props, children, parent, data }) {
+    render (createElement) {
         return createElement()
     }
 }

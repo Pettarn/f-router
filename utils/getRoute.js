@@ -1,10 +1,10 @@
 let getRoute = function (currentHash, routePool) {
 
-    let currentRoute
+    let currentRoute = []
 
     routePool.forEach(item => {
-        if('#' + item.path === currentHash) {
-            currentRoute = item
+        if (item.path === currentHash) {
+            currentRoute.push(item)
         }
     })
 
