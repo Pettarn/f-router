@@ -6,31 +6,55 @@ export default {
         }
     },
 
-    render (_, { parent }) {
+    render (_, { parent, data }) {
+
+        // router-view will be rendered as matched component 
         let h = parent.$createElement
         let hash = this.$router.currentHash  
 
         // the x level routeMap and hash  match
-        let currentMap = parent._childrenMap || this.$router.routeMap
-        let matched = []
-        currentMap.forEach(item => {
-            let index = hash.indexOf(item.path)
-            if (index !== 0) {
-                return
-            } else {
-                matched.push(item)
+        if (!parent._childrenMap) {
+            let currentMap = this.$router.routeMap
+            let matched = []
+            currentMap.forEach(item => {
+                let index = hash.indexOf(item.path)
+                if (index === 0) {
+                    matched.push(item)
+                }
+            })
+            
+            if (matched[0].children) {
+                data._childrenMap = matched[0].children
+                data._hashChip = matched[0].path
             }
-        })
 
-        // if matched only one route
-        if (matched.length === 1) {
-            h(matched[0].component)
+            return h(matched[0].component)
+            
+            
         } else {
-            // if matched more than one route
-            h(matched[0].component)
-        }
+            let currentMap = parent._childrenMap
+            let parentHashChip = parent._parentHashChip
+            let matched = []
 
-    }
+            if (parentHashChip[-1] !== '/') {
+                parentHashChip += '/'
+            }
+
+            currentMap.forEach(item => {
+                let index = hash.indexOf(parentHashChip + item.path)
+                if (index !== -1) {
+                    matched.push(item)
+                }
+            })
+
+            if (matched[0].children) {
+                data._childrenMap = matched[0].children
+                data._hashChip = matched[0].path
+            }
+
+            return h(matched[0].component)
+        }
+    }    
 }
 
 
