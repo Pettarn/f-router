@@ -1,22 +1,12 @@
-##  从简单的开始，慢慢来,先搭一个一层的路由。
-##  要有自己的节奏，不要被源码牵着鼻子走。
-                
-#### 如何匹配 hash字符串 和 component ，如果存在子路由的时候怎么办？ 把每一条路径都遍历一遍，每一条路径对应单独地一个组件，或者利用'/'搞事情  暂时先不考虑这个了，先写一层路由，跑起来再说。       
-#### 如果用户手动更改 hash 后面字符串的值，怎么实时地更新视图？ getter和setter  或者直接用 Vue.observable(obj)      
+#### router-view 如何知道它该渲染哪个组件？假设hash值是两层，第一层的router-view：hash.indexOf遍历一遍第一层的路由表, 只要值不等于 0 那么就排除掉，然后为该router-view设置 children表 ; 第二层的router-view：它能拿到父组件的 children表 , 直接hash.indexOf遍历一遍 children表 筛选出来一个数组matched<Array>，如果 hash.indexOf(它的父组件的path + 遍历matched) === -1 那么就淘汰
 
-    router-view实现思路：
-    拿到当前的 hash 值
-    和route表匹配，得到对应的组件
-    渲染
-    (问题：需要访问this.$router和this.$route)        
 
-    vm.$router实现思路:
-    install的时候register进去,但是$router只有在router实例生成之后才会产生beforeCreate
+localhost:8080/#/a/b
 
-#### 如果是根实例，要开始记录url history，如果是普通的组件实例，那么就不用创建新的 history。 
-
-#### 路径匹配和状态管理
-
-#### 路径匹配：如何判断第几层的路由。假如这时候给你一个路由片段，你该怎么找到和他对应的组件。(假设只有一层)
-#### 状态管理：存历史
-
+`/a`
+<router-view> 
+    <child>
+        `b`
+        <router-view></router-view>
+    </child>
+</router-view>

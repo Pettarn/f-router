@@ -1,21 +1,15 @@
-import FRouter from './index.js'
 import RouterView from '../template/router-view.js'
 import RouterLink from '../template/router-link.js'
 
 
 
-let isDef = item => item !== undefined
+const isDef = item => item !== undefined
 
-FRouter.install = function (Vue) {
+const install = function (Vue) {
 
     Object.defineProperty(Vue.prototype, $router, {
         get () {
             return this.$options.router
-        }
-    })
-    Object.defineProperty(Vue.prototype, $route, {
-        get () {
-            return this.$router.getRoute()
         }
     })
 
@@ -23,3 +17,5 @@ FRouter.install = function (Vue) {
     Vue.component('RouterLink', RouterLink)
     
 }
+
+export default install
