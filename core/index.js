@@ -1,10 +1,10 @@
 import install from './install'
+import History from '../utils/History'
 
 
-export class FRotuer {
+class FRouter {
     constructor (options) {
         this.routeMap = options.routes
-
     }
 
     get currentHash () {
@@ -18,5 +18,13 @@ export class FRotuer {
         return href.slice(index + 1)
     }
 
+    initHistory () {
+        this.history.initHistory()
+    }
+
     static install = install
 }
+
+FRotuer.prototype.history = new History(FRouter.prototype)
+
+export default FRouter
