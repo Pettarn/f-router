@@ -5,13 +5,14 @@ const install = function (Vue) {
 
     Vue.mixin({
         beforeCreate() {
-            Object.defineProperty(Vue.prototype, $router, {
-                get () {
-                    return this.$options.router
-                }
-            })
-            
-            this.$router.initHistory()
+            if (this.$options.router) {
+                Object.defineProperty(Vue.prototype, $router, {
+                    get () {
+                        return this.$options.router
+                    }
+                })
+                this.$router.initHistory()
+            }
         },
     })
 

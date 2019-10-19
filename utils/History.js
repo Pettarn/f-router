@@ -5,19 +5,30 @@ class History {
 
     initHistory () {
         this.Stack = []
-        this.current = router.currentHash
-        this.Stack.push(this.current)
+        this.Stack.push(this.router.currentHash)
     }
 
-    // relative path or absolute path
-    push (hash) {
-        // this.current = hash
-        // this.Stack.push(this.current)
+    push (url) {
+        location.href = url
+        this.Stack.push(this.router.currentHash)
+    }
 
-        if (hash.indexOf('/http(s):/') !== 0 ) {
-
+    back () {
+        let index = this.Stack.indexOf(this.router.currentHash)
+        if (index > 0) {
+            location.href = this.Stack[index-1]
+        } else {
+            location.reload()
         }
+    }
 
+    forward () {
+        let index = this.Stack.indexOf(this.router.currentHash)
+        if (index < this.Stack.length) {
+            location.href = this.Stack[index+1]
+        } else {
+            location.reload()
+        }
     }
     
 }

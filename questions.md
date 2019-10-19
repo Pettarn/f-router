@@ -2,7 +2,9 @@
 
 #### historyRecord : state     router 实例拥有一个 history 属性，它能够push
 
-#### 
+#### this.$router.push()
+#### 如果链接是一个相对路径怎么处理, 现在假设只允许开发者填写绝对路径
+
 
 localhost:8080/#/a/b
 

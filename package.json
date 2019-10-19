@@ -1,11 +1,12 @@
 {
-  "name": "f-router",
+  "name": "@pettarn/f-router",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c -w -m"
+    "build": "rollup -c -w -m",
+    "publish": "npm publish --access=public"
   },
   "keywords": [],
   "author": "",

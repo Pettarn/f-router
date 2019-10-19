@@ -22,9 +22,20 @@ class FRouter {
         this.history.initHistory()
     }
 
-    static install = install
+    push (url) {
+        this.history.push(url)
+    } 
+
+    back () {
+        this.history.back()
+    }
+
+    forward () {
+        this.history.forward()
+    }
 }
 
+FRouter.install = install
 FRotuer.prototype.history = new History(FRouter.prototype)
 
 export default FRouter
