@@ -5,6 +5,10 @@
 #### this.$router.push()
 #### 如果链接是一个相对路径怎么处理, 现在假设只允许开发者填写绝对路径
 
+#### 重定向，拿到要重定向的路径片段，替换被重定向的片段，/a/b -> /c/b           
+    location.href.replace(matched[0].path, matched[0].redirect)
+        
+
 
 localhost:8080/#/a/b
 

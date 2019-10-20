@@ -87,12 +87,14 @@
   var install = function install(Vue) {
     Vue.mixin({
       beforeCreate: function beforeCreate() {
-        Object.defineProperty(Vue.prototype, $router, {
-          get: function get() {
-            return this.$options.router;
-          }
-        });
-        this.$router.initHistory();
+        if (this.$options.router) {
+          Object.defineProperty(Vue.prototype, $router, {
+            get: function get() {
+              return this.$options.router;
+            }
+          });
+          this.$router.initHistory();
+        }
       }
     });
     Vue.component('RouterView', RouterView);
@@ -111,16 +113,35 @@
       key: "initHistory",
       value: function initHistory() {
         this.Stack = [];
-        this.current = router.currentHash;
-        this.Stack.push(this.current);
-      } // relative path or absolute path
-
+        this.Stack.push(this.router.currentHash);
+      }
     }, {
       key: "push",
-      value: function push(hash) {
-        // this.current = hash
-        // this.Stack.push(this.current)
-        if (hash.indexOf('/http(s):/') !== 0) ;
+      value: function push(url) {
+        location.href = url;
+        this.Stack.push(this.router.currentHash);
+      }
+    }, {
+      key: "back",
+      value: function back() {
+        var index = this.Stack.indexOf(this.router.currentHash);
+
+        if (index > 0) {
+          location.href = this.Stack[index - 1];
+        } else {
+          location.reload();
+        }
+      }
+    }, {
+      key: "forward",
+      value: function forward() {
+        var index = this.Stack.indexOf(this.router.currentHash);
+
+        if (index < this.Stack.length) {
+          location.href = this.Stack[index + 1];
+        } else {
+          location.reload();
+        }
       }
     }]);
 
@@ -140,6 +161,21 @@
       key: "initHistory",
       value: function initHistory() {
         this.history.initHistory();
+      }
+    }, {
+      key: "push",
+      value: function push(url) {
+        this.history.push(url);
+      }
+    }, {
+      key: "back",
+      value: function back() {
+        this.history.back();
+      }
+    }, {
+      key: "forward",
+      value: function forward() {
+        this.history.forward();
       }
     }, {
       key: "currentHash",
