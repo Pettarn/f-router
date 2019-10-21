@@ -7,6 +7,8 @@
 
 #### 重定向，拿到要重定向的路径片段，替换被重定向的片段，/a/b -> /c/b           
     location.href.replace(matched[0].path, matched[0].redirect)
+
+#### npm 如何ignore
         
 
 
