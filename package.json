@@ -15,6 +15,7 @@
     "@babel/cli": "^7.6.2",
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
+    "@pettarn/f-router": "^1.1.2",
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
     "@vue/babel-preset-jsx": "^1.1.0",
     "rollup": "^1.21.4",

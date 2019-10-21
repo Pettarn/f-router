@@ -661,6 +661,11 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@pettarn/f-router@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.npm.taobao.org/@pettarn/f-router/download/@pettarn/f-router-1.1.2.tgz#6c1d9b8484bbf8515dce72eab77da1dd54704efc"
+  integrity sha1-bB2bhIS7+FFdznLqt32h3VRwTvw=
+
 "@types/estree@0.0.39":
   version "0.0.39"
   resolved "https://registry.npm.taobao.org/@types/estree/download/@types/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"

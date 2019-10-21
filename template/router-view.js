@@ -39,7 +39,7 @@ export default {
                 
             } else {
                 let currentMap = parent._childrenMap
-                let parentHashChip = parent._parentHashChip
+                let parentHashChip = parent._hashChip
                 let matched = []
 
                 if (parentHashChip[-1] !== '/') {
