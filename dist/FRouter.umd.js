@@ -36,65 +36,100 @@
     render: function render(_, _ref) {
       var parent = _ref.parent,
           data = _ref.data;
-      // router-view will be rendered as matched component 
-      var h = parent.$createElement;
-      var hash = this.$router.currentHash; // the x level routeMap and hash  match
 
-      if (!parent._childrenMap) {
-        var currentMap = this.$router.routeMap;
-        var matched = [];
-        currentMap.forEach(function (item) {
-          var index = hash.indexOf(item.path);
+      function renderCore(_, _ref2) {
+        var parent = _ref2.parent,
+            data = _ref2.data;
+        // router-view will be rendered as matched component 
+        var h = parent.$createElement;
+        var hash = this.$router.currentHash; // the x level routeMap and hash  match
 
-          if (index === 0) {
-            matched.push(item);
+        if (!parent._childrenMap) {
+          var currentMap = this.$router.routeMap;
+          var matched = [];
+          currentMap.forEach(function (item) {
+            var index = hash.indexOf(item.path);
+
+            if (index === 0) {
+              matched.push(item);
+            }
+          });
+
+          if (matched[0].redirect) {
+            location.href.replace(matched[0].path, matched[0].redirect);
+            return renderCore(_, {
+              parent: parent,
+              data: data
+            });
           }
-        });
 
-        if (matched[0].children) {
-          data._childrenMap = matched[0].children;
-          data._hashChip = matched[0].path;
-        }
-
-        return h(matched[0].component);
-      } else {
-        var _currentMap = parent._childrenMap;
-        var parentHashChip = parent._parentHashChip;
-        var _matched = [];
-
-        if (parentHashChip[-1] !== '/') {
-          parentHashChip += '/';
-        }
-
-        _currentMap.forEach(function (item) {
-          var index = hash.indexOf(parentHashChip + item.path);
-
-          if (index !== -1) {
-            _matched.push(item);
+          if (matched[0].children) {
+            data._childrenMap = matched[0].children;
+            data._hashChip = matched[0].path;
           }
-        });
 
-        if (_matched[0].children) {
-          data._childrenMap = _matched[0].children;
-          data._hashChip = _matched[0].path;
+          return h(matched[0].component);
+        } else {
+          var _currentMap = parent._childrenMap;
+          var parentHashChip = parent._hashChip;
+          var _matched = [];
+
+          if (parentHashChip[-1] !== '/') {
+            parentHashChip += '/';
+          }
+
+          _currentMap.forEach(function (item) {
+            var index = hash.indexOf(parentHashChip + item.path);
+
+            if (index !== -1) {
+              _matched.push(item);
+            }
+          });
+
+          if (_matched[0].redirect) {
+            location.href.replace(_matched[0].path, _matched[0].redirect);
+            return renderCore(_, {
+              parent: parent,
+              data: data
+            });
+          }
+
+          if (_matched[0].children) {
+            data._childrenMap = _matched[0].children;
+            data._hashChip = _matched[0].path;
+          }
+
+          return h(_matched[0].component);
         }
-
-        return h(_matched[0].component);
       }
+
+      renderCore(_, {
+        parent: parent,
+        data: data
+      });
     }
+  };
+
+  var isDef = function isDef(v) {
+    return v !== undefined;
   };
 
   var install = function install(Vue) {
     Vue.mixin({
       beforeCreate: function beforeCreate() {
-        if (this.$options.router) {
-          Object.defineProperty(Vue.prototype, $router, {
-            get: function get() {
-              return this.$options.router;
-            }
-          });
-          this.$router.initHistory();
+        if (isDef(this.$options.router)) {
+          this._routerRoot = this;
+          this._router = this.$options.router;
+
+          this._router.initHistory();
+        } else {
+          this._routerRoot = this.$parent || this.$parent._routerRoot;
         }
+      }
+    });
+    Object.defineProperty(Vue.prototype, $router, {
+      get: function get() {
+        return this._routerRoot._router;
       }
     });
     Vue.component('RouterView', RouterView);
