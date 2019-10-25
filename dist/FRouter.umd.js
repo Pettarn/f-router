@@ -230,7 +230,7 @@
   }();
 
   FRouter.install = install;
-  FRotuer.prototype.history = new History(FRouter.prototype);
+  FRouter.prototype.history = new History(FRouter.prototype);
 
   return FRouter;
 
