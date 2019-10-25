@@ -127,7 +127,7 @@
         }
       }
     });
-    Object.defineProperty(Vue.prototype, $router, {
+    Object.defineProperty(Vue.prototype, '$router', {
       get: function get() {
         return this._routerRoot._router;
       }
