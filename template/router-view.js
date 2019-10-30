@@ -6,12 +6,12 @@ export default {
         }
     },
 
-    render (_, { parent, data }) {
+    render(_, { parent, data }) {
 
-        function renderCore (_, { parent, data }) {
+        (() => {
             // router-view will be rendered as matched component 
             let h = parent.$createElement
-            let hash = this.$router.currentHash  
+            let hash = this.$router.currentHash
 
             // the x level routeMap and hash  match
             if (!parent._childrenMap) {
@@ -23,7 +23,7 @@ export default {
                         matched.push(item)
                     }
                 })
-                
+
                 if (matched[0].redirect) {
                     location.href.replace(matched[0].path, matched[0].redirect)
                     return renderCore(_, { parent, data })
@@ -35,8 +35,8 @@ export default {
                 }
 
                 return h(matched[0].component)
-                
-                
+
+
             } else {
                 let currentMap = parent._childrenMap
                 let parentHashChip = parent._hashChip
@@ -64,12 +64,10 @@ export default {
                 }
 
                 return h(matched[0].component)
-            }    
-        }
-
-        renderCore(_, { parent, data })
+            }
+        })()
         
-    }    
+    }
 }
 
 
