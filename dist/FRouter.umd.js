@@ -27,6 +27,8 @@
   }
 
   var RouterView = {
+    name: 'RouterView',
+    functional: true,
     props: {
       name: {
         type: String,

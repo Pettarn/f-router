@@ -1,4 +1,6 @@
 export default {
+    name: 'RouterView',
+    functional: true,
     props: {
         name: {
             type: String,
@@ -66,7 +68,7 @@ export default {
                 return h(matched[0].component)
             }
         })()
-        
+
     }
 }
 
