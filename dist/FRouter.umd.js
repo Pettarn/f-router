@@ -34,18 +34,18 @@
       }
     },
     render: function render(_, _ref) {
+      var _this = this;
+
       var parent = _ref.parent,
           data = _ref.data;
 
-      function renderCore(_, _ref2) {
-        var parent = _ref2.parent,
-            data = _ref2.data;
+      (function () {
         // router-view will be rendered as matched component 
         var h = parent.$createElement;
-        var hash = this.$router.currentHash; // the x level routeMap and hash  match
+        var hash = _this.$router.currentHash; // the x level routeMap and hash  match
 
         if (!parent._childrenMap) {
-          var currentMap = this.$router.routeMap;
+          var currentMap = _this.$router.routeMap;
           var matched = [];
           currentMap.forEach(function (item) {
             var index = hash.indexOf(item.path);
@@ -101,12 +101,7 @@
 
           return h(_matched[0].component);
         }
-      }
-
-      renderCore(_, {
-        parent: parent,
-        data: data
-      });
+      })();
     }
   };
 
