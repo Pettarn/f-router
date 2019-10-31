@@ -39,7 +39,7 @@
       var parent = _ref.parent,
           data = _ref.data;
 
-      (function () {
+      var renderCore = function renderCore() {
         // router-view will be rendered as matched component 
         var h = parent.$createElement;
         var hash = parent.$router.currentHash; // the x level routeMap and hash  match
@@ -53,14 +53,15 @@
             if (index === 0) {
               matched.push(item);
             }
-          });
+          }); // matched nothing
+
+          if (!matched[0]) {
+            return h();
+          }
 
           if (matched[0].redirect) {
             location.href.replace(matched[0].path, matched[0].redirect);
-            return renderCore(_, {
-              parent: parent,
-              data: data
-            });
+            return renderCore();
           }
 
           if (matched[0].children) {
@@ -88,10 +89,7 @@
 
           if (_matched[0].redirect) {
             location.href.replace(_matched[0].path, _matched[0].redirect);
-            return renderCore(_, {
-              parent: parent,
-              data: data
-            });
+            return renderCore();
           }
 
           if (_matched[0].children) {
@@ -101,7 +99,9 @@
 
           return h(_matched[0].component);
         }
-      })();
+      };
+
+      renderCore();
     }
   };
 

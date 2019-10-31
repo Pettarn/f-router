@@ -10,7 +10,7 @@ export default {
 
     render(_, { parent, data }) {
 
-        (() => {
+        let renderCore = () => {
             // router-view will be rendered as matched component 
             let h = parent.$createElement
             let hash = parent.$router.currentHash
@@ -26,9 +26,14 @@ export default {
                     }
                 })
 
+                // matched nothing
+                if (!matched[0]) {
+                    return h()
+                }
+
                 if (matched[0].redirect) {
                     location.href.replace(matched[0].path, matched[0].redirect)
-                    return renderCore(_, { parent, data })
+                    return renderCore()
                 }
 
                 if (matched[0].children) {
@@ -57,7 +62,7 @@ export default {
 
                 if (matched[0].redirect) {
                     location.href.replace(matched[0].path, matched[0].redirect)
-                    return renderCore(_, { parent, data })
+                    return renderCore()
                 }
 
                 if (matched[0].children) {
@@ -67,7 +72,9 @@ export default {
 
                 return h(matched[0].component)
             }
-        })()
+        }
+        
+        renderCore()
 
     }
 }
