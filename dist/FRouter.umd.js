@@ -36,8 +36,6 @@
       }
     },
     render: function render(_, _ref) {
-      var _this = this;
-
       var parent = _ref.parent,
           data = _ref.data;
 
@@ -47,7 +45,7 @@
         var hash = parent.$router.currentHash; // the x level routeMap and hash  match
 
         if (!parent._childrenMap) {
-          var currentMap = _this.$router.routeMap;
+          var currentMap = parent.$router.routeMap;
           var matched = [];
           currentMap.forEach(function (item) {
             var index = hash.indexOf(item.path);

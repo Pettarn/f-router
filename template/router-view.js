@@ -17,7 +17,7 @@ export default {
 
             // the x level routeMap and hash  match
             if (!parent._childrenMap) {
-                let currentMap = this.$router.routeMap
+                let currentMap = parent.$router.routeMap
                 let matched = []
                 currentMap.forEach(item => {
                     let index = hash.indexOf(item.path)
