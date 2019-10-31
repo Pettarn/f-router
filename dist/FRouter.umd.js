@@ -44,7 +44,7 @@
       (function () {
         // router-view will be rendered as matched component 
         var h = parent.$createElement;
-        var hash = _this.$router.currentHash; // the x level routeMap and hash  match
+        var hash = parent.$router.currentHash; // the x level routeMap and hash  match
 
         if (!parent._childrenMap) {
           var currentMap = _this.$router.routeMap;

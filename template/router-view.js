@@ -13,7 +13,7 @@ export default {
         (() => {
             // router-view will be rendered as matched component 
             let h = parent.$createElement
-            let hash = this.$router.currentHash
+            let hash = parent.$router.currentHash
 
             // the x level routeMap and hash  match
             if (!parent._childrenMap) {
