@@ -185,7 +185,7 @@
       _classCallCheck(this, FRouter);
 
       this.routeMap = options.routes;
-      console.log('bug');
+      console.log(window !== undefined);
     }
 
     _createClass(FRouter, [{

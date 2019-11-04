@@ -5,7 +5,7 @@ import History from '../utils/History'
 class FRouter {
     constructor (options) {
         this.routeMap = options.routes
-        console.log('bug')
+        console.log(window !== undefined)
     }
 
     get currentHash () {
