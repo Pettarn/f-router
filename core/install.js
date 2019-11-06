@@ -4,6 +4,8 @@ const isDef = v => v !== undefined
 
 const install = function (Vue) {
 
+    console.log('Vue.mixin is going to happen.')
+
     Vue.mixin({
         beforeCreate () {
             if (isDef(this.$options.router)) {
