@@ -22,6 +22,8 @@ const install = function (Vue) {
         }
     })
 
+    console.log('RouterView has been registered.')
+
     Vue.component('RouterView', RouterView)
     
 }
