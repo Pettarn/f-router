@@ -38,6 +38,7 @@
     render: function render(_, _ref) {
       var parent = _ref.parent,
           data = _ref.data;
+      console.log('router-view is normal.');
 
       var renderCore = function renderCore() {
         // router-view will be rendered as matched component 
@@ -109,7 +110,10 @@
     return v !== undefined;
   };
 
+  console.log('bug');
+
   var install = function install(Vue) {
+    console.log('Vue.mixin is going to happen.');
     Vue.mixin({
       beforeCreate: function beforeCreate() {
         if (isDef(this.$options.router)) {
@@ -118,7 +122,7 @@
 
           this._router.initHistory();
         } else {
-          this._routerRoot = this.$parent || this.$parent._routerRoot;
+          this._routerRoot = this.$parent && this.$parent._routerRoot || this;
         }
       }
     });
@@ -127,6 +131,7 @@
         return this._routerRoot._router;
       }
     });
+    console.log('RouterView has been registered.');
     Vue.component('RouterView', RouterView);
   };
 
@@ -185,7 +190,6 @@
       _classCallCheck(this, FRouter);
 
       this.routeMap = options.routes;
-      console.log(window !== undefined);
     }
 
     _createClass(FRouter, [{
