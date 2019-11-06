@@ -11,7 +11,7 @@ const install = function (Vue) {
                 this._router = this.$options.router
                 this._router.initHistory()
             } else {
-                this._routerRoot = this.$parent || this.$parent._routerRoot
+                this._routerRoot = (this.$parent && this.$parent._routerRoot) || this
             }
         }
     })

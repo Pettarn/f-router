@@ -10,6 +10,8 @@ export default {
 
     render(_, { parent, data }) {
 
+        console.log('router-view is normal.')
+
         let renderCore = () => {
             // router-view will be rendered as matched component 
             let h = parent.$createElement
