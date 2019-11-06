@@ -57,6 +57,7 @@
           }); // matched nothing
 
           if (!matched[0]) {
+            console.log('rendered nothing.');
             return h();
           }
 
@@ -70,6 +71,7 @@
             data._hashChip = matched[0].path;
           }
 
+          console.log('rendered something.');
           return h(matched[0].component);
         } else {
           var _currentMap = parent._childrenMap;
@@ -98,6 +100,7 @@
             data._hashChip = _matched[0].path;
           }
 
+          console.log('rendered something.');
           return h(_matched[0].component);
         }
       };
@@ -110,10 +113,7 @@
     return v !== undefined;
   };
 
-  console.log('bug');
-
   var install = function install(Vue) {
-    console.log('Vue.mixin is going to happen.');
     Vue.mixin({
       beforeCreate: function beforeCreate() {
         if (isDef(this.$options.router)) {
@@ -131,7 +131,6 @@
         return this._routerRoot._router;
       }
     });
-    console.log('RouterView has been registered.');
     Vue.component('RouterView', RouterView);
   };
 

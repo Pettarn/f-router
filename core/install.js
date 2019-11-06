@@ -2,11 +2,7 @@ import RouterView from '../template/router-view.js'
 
 const isDef = v => v !== undefined
 
-console.log('bug')
-
 const install = function (Vue) {
-
-    console.log('Vue.mixin is going to happen.')
 
     Vue.mixin({
         beforeCreate () {
@@ -25,8 +21,6 @@ const install = function (Vue) {
             return this._routerRoot._router
         }
     })
-
-    console.log('RouterView has been registered.')
 
     Vue.component('RouterView', RouterView)
     

@@ -30,6 +30,9 @@ export default {
 
                 // matched nothing
                 if (!matched[0]) {
+
+                    console.log('rendered nothing.')
+
                     return h()
                 }
 
@@ -42,6 +45,8 @@ export default {
                     data._childrenMap = matched[0].children
                     data._hashChip = matched[0].path
                 }
+
+                console.log('rendered something.')
 
                 return h(matched[0].component)
 
@@ -71,6 +76,8 @@ export default {
                     data._childrenMap = matched[0].children
                     data._hashChip = matched[0].path
                 }
+
+                console.log('rendered something.')
 
                 return h(matched[0].component)
             }
