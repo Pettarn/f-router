@@ -2,6 +2,8 @@ import RouterView from '../template/router-view.js'
 
 const isDef = v => v !== undefined
 
+console.log('bug')
+
 const install = function (Vue) {
 
     console.log('Vue.mixin is going to happen.')
