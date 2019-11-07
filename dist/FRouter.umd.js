@@ -192,7 +192,9 @@
       _classCallCheck(this, FRouter);
 
       this.routeMap = options.routes;
-    }
+    } // get href () {
+    // }
+
 
     _createClass(FRouter, [{
       key: "initHistory",
@@ -217,8 +219,11 @@
     }, {
       key: "currentHash",
       get: function get() {
+        console.log('The method currentHash is executed.');
         var href = window.location.href;
         var index = href.indexOf('#');
+        console.log(href);
+        console.log(index);
 
         if (index < 0) {
           return '';

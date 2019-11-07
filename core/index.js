@@ -7,10 +7,20 @@ class FRouter {
         this.routeMap = options.routes
     }
 
+    // get href () {
+
+    // }
+
     get currentHash () {
+
+        console.log('The method currentHash is executed.')
+
         let href = window.location.href
         let index = href.indexOf('#')
         
+        console.log(href)
+        console.log(index)
+
         if (index < 0) {
             return ''
         }
