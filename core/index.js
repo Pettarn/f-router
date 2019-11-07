@@ -15,17 +15,17 @@ class FRouter {
 
         console.log('The method currentHash is executed.')
 
-        let href = window.location.href
-        let index = href.indexOf('#')
+        let hash = window.location.hash
+        let index = hash.indexOf('#')
         
-        console.log(href)
+        console.log(hash)
         console.log(index)
 
         if (index < 0) {
-            return ''
+            return '/'
         }
 
-        return href.slice(index + 1)
+        return hash.slice(index + 1)
     }
 
     initHistory () {

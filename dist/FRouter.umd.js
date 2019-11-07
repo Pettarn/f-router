@@ -220,16 +220,16 @@
       key: "currentHash",
       get: function get() {
         console.log('The method currentHash is executed.');
-        var href = window.location.href;
-        var index = href.indexOf('#');
-        console.log(href);
+        var hash = window.location.hash;
+        var index = hash.indexOf('#');
+        console.log(hash);
         console.log(index);
 
         if (index < 0) {
-          return '';
+          return '/';
         }
 
-        return href.slice(index + 1);
+        return hash.slice(index + 1);
       }
     }]);
 
