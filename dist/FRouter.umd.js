@@ -47,6 +47,7 @@
 
         if (!parent._childrenMap) {
           var currentMap = parent.$router.routeMap;
+          console.log(hash);
           console.log(currentMap);
           var matched = [];
           currentMap.forEach(function (item) {

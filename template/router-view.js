@@ -21,6 +21,7 @@ export default {
             if (!parent._childrenMap) {
                 let currentMap = parent.$router.routeMap
 
+                console.log(hash)
                 console.log(currentMap)
 
                 let matched = []
