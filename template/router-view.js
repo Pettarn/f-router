@@ -20,6 +20,9 @@ export default {
             // the x level routeMap and hash  match
             if (!parent._childrenMap) {
                 let currentMap = parent.$router.routeMap
+
+                console.log(currentMap)
+
                 let matched = []
                 currentMap.forEach(item => {
                     let index = hash.indexOf(item.path)
@@ -27,6 +30,8 @@ export default {
                         matched.push(item)
                     }
                 })
+
+                console.log(matched)
 
                 // matched nothing
                 if (!matched[0]) {

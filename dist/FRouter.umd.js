@@ -47,6 +47,7 @@
 
         if (!parent._childrenMap) {
           var currentMap = parent.$router.routeMap;
+          console.log(currentMap);
           var matched = [];
           currentMap.forEach(function (item) {
             var index = hash.indexOf(item.path);
@@ -54,7 +55,8 @@
             if (index === 0) {
               matched.push(item);
             }
-          }); // matched nothing
+          });
+          console.log(matched); // matched nothing
 
           if (!matched[0]) {
             console.log('rendered nothing.');
