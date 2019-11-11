@@ -38,13 +38,14 @@
     render: function render(_, _ref) {
       var parent = _ref.parent,
           data = _ref.data;
+      // router-view will be rendered as matched component 
+      var h = parent.$createElement;
+      var hash = parent.$router.currentHash;
       console.log('router-view is normal.');
+      var options = {};
 
       var renderCore = function renderCore() {
-        // router-view will be rendered as matched component 
-        var h = parent.$createElement;
-        var hash = parent.$router.currentHash; // the x level routeMap and hash  match
-
+        // the x level routeMap and hash  match
         if (!parent._childrenMap) {
           var currentMap = parent.$router.routeMap;
           console.log(hash);
@@ -75,7 +76,7 @@
           }
 
           console.log('rendered something.');
-          return _(matched[0].component);
+          options.component = matched[0].component;
         } else {
           var _currentMap = parent._childrenMap;
           var parentHashChip = parent._hashChip;
@@ -109,6 +110,7 @@
       };
 
       renderCore();
+      return h(options.component);
     }
   };
 

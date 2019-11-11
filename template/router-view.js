@@ -10,13 +10,15 @@ export default {
 
     render(_, { parent, data }) {
 
+        // router-view will be rendered as matched component 
+        let h = parent.$createElement
+        let hash = parent.$router.currentHash
+
         console.log('router-view is normal.')
 
-        let renderCore = () => {
-            // router-view will be rendered as matched component 
-            let h = parent.$createElement
-            let hash = parent.$router.currentHash
+        let options = {}
 
+        let renderCore = () => {
             // the x level routeMap and hash  match
             if (!parent._childrenMap) {
                 let currentMap = parent.$router.routeMap
@@ -55,7 +57,7 @@ export default {
                 console.log('rendered something.')
 
                 
-                return _(matched[0].component)
+                options.component = matched[0].component
 
 
             } else {
@@ -91,6 +93,8 @@ export default {
         }
         
         renderCore()
+
+        return h(options.component)
 
     }
 }
