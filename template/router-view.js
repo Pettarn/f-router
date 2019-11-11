@@ -21,8 +21,6 @@ export default {
             if (!parent._childrenMap) {
                 let currentMap = parent.$router.routeMap
 
-                console.log(createElement)
-                console.log(h)
                 console.log(hash)
                 console.log(currentMap)
 
