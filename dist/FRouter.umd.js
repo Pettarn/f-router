@@ -75,8 +75,9 @@
             data._hashChip = matched[0].path;
           }
 
-          console.log('rendered something.');
-          return h(matched[0].component);
+          console.log('rendered something.'); // return h(matched[0].component)
+
+          return h('div', null, "Hello, you're seccessing.");
         } else {
           var _currentMap = parent._childrenMap;
           var parentHashChip = parent._hashChip;

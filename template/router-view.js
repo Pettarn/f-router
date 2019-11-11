@@ -56,7 +56,8 @@ export default {
 
                 console.log('rendered something.')
 
-                return h(matched[0].component)
+                // return h(matched[0].component)
+                return h('div', null, `Hello, you're seccessing.`)
 
 
             } else {
