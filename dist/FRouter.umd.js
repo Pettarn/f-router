@@ -47,6 +47,7 @@
 
         if (!parent._childrenMap) {
           var currentMap = parent.$router.routeMap;
+          console.log(createElement);
           console.log(h);
           console.log(hash);
           console.log(currentMap);
