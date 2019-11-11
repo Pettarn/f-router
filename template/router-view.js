@@ -54,8 +54,8 @@ export default {
 
                 console.log('rendered something.')
 
-                // return h(matched[0].component)
-                return document.createElement('button')
+                
+                return _(matched[0].component)
 
 
             } else {
