@@ -1,6 +1,9 @@
 import install from './install'
 import History from '../utils/History'
 
+window.onhashchange = function () {
+    location.reload()
+}
 
 class FRouter {
     constructor (options) {
