@@ -41,7 +41,7 @@ export default {
 
                     console.log('rendered nothing.')
 
-                    return h()
+                    options.component = null
                 }
 
                 if (matched[0].redirect) {
@@ -88,7 +88,7 @@ export default {
 
                 console.log('rendered something.')
 
-                return h(matched[0].component)
+                options.component = matched[0].component
             }
         }
         

@@ -62,7 +62,7 @@
 
           if (!matched[0]) {
             console.log('rendered nothing.');
-            return h();
+            options.component = null;
           }
 
           if (matched[0].redirect) {
@@ -105,7 +105,7 @@
           }
 
           console.log('rendered something.');
-          return h(_matched[0].component);
+          options.component = _matched[0].component;
         }
       };
 
@@ -186,6 +186,10 @@
 
     return History;
   }();
+
+  window.onhashchange = function () {
+    location.reload();
+  };
 
   var FRouter =
   /*#__PURE__*/
