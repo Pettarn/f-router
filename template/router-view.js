@@ -57,7 +57,7 @@ export default {
                 console.log('rendered something.')
 
                 
-                options.component = matched[0].component
+                options.component = matched[matched.length-1].component
 
 
             } else {
@@ -88,7 +88,7 @@ export default {
 
                 console.log('rendered something.')
 
-                options.component = matched[0].component
+                options.component = matched[matched.length-1].component
             }
         }
         

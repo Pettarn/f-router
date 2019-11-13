@@ -76,7 +76,7 @@
           }
 
           console.log('rendered something.');
-          options.component = matched[0].component;
+          options.component = matched[matched.length - 1].component;
         } else {
           var _currentMap = parent._childrenMap;
           var parentHashChip = parent._hashChip;
@@ -105,7 +105,7 @@
           }
 
           console.log('rendered something.');
-          options.component = _matched[0].component;
+          options.component = _matched[_matched.length - 1].component;
         }
       };
 
