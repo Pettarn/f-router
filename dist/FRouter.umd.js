@@ -66,7 +66,7 @@
           }
 
           if (matched[matched.length - 1].redirect) {
-            location.href.replace(matched[matched.length - 1].path, matched[matched.length - 1].redirect);
+            location.hash.indexOf(matched[matched.length - 1].path) > 0 ? location.hash.replace(matched[matched.length - 1].path, matched[matched.length - 1].redirect) : (matched[matched.length - 1].path + location.hash).replace(matched[matched.length - 1].path, matched[matched.length - 1].redirect);
             return renderCore();
           }
 
@@ -94,8 +94,8 @@
             }
           });
 
-          if (_matched[0].redirect) {
-            location.href.replace(_matched[_matched.length - 1].path, _matched[_matched.length - 1].redirect);
+          if (_matched[_matched.length - 1].redirect) {
+            location.hash.indexOf(_matched[_matched.length - 1].path) > 0 ? location.hash.replace(_matched[_matched.length - 1].path, _matched[_matched.length - 1].redirect) : (_matched[_matched.length - 1].path + location.hash).replace(_matched[_matched.length - 1].path, _matched[_matched.length - 1].redirect);
             return renderCore();
           }
 
