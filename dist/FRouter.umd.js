@@ -65,14 +65,14 @@
             options.component = null;
           }
 
-          if (matched[0].redirect) {
-            location.href.replace(matched[0].path, matched[0].redirect);
+          if (matched[matched.length - 1].redirect) {
+            location.href.replace(matched[matched.length - 1].path, matched[matched.length - 1].redirect);
             return renderCore();
           }
 
-          if (matched[0].children) {
-            data._childrenMap = matched[0].children;
-            data._hashChip = matched[0].path;
+          if (matched[matched.length - 1].children) {
+            data._childrenMap = matched[matched.length - 1].children;
+            data._hashChip = matched[matched.length - 1].path;
           }
 
           console.log('rendered something.');
@@ -95,13 +95,13 @@
           });
 
           if (_matched[0].redirect) {
-            location.href.replace(_matched[0].path, _matched[0].redirect);
+            location.href.replace(_matched[_matched.length - 1].path, _matched[_matched.length - 1].redirect);
             return renderCore();
           }
 
-          if (_matched[0].children) {
-            data._childrenMap = _matched[0].children;
-            data._hashChip = _matched[0].path;
+          if (_matched[_matched.length - 1].children) {
+            data._childrenMap = _matched[_matched.length - 1].children;
+            data._hashChip = _matched[_matched.length - 1].path;
           }
 
           console.log('rendered something.');
