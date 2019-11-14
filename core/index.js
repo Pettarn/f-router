@@ -24,10 +24,6 @@ class FRouter {
         console.log(hash)
         console.log(index)
 
-        if (index < 0) {
-            return '/'
-        }
-
         return hash.slice(index + 1)
     }
 
