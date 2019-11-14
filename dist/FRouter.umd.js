@@ -226,11 +226,9 @@
       key: "currentHash",
       get: function get() {
         console.log('The method currentHash is executed.');
-        var hash = window.location.hash;
-        var index = hash.indexOf('#');
-        console.log(hash);
-        console.log(index);
-        return hash.slice(index + 1);
+        var hash = window.location.hash; // let index = hash.indexOf('#')
+
+        return hash;
       }
     }]);
 

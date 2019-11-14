@@ -19,12 +19,9 @@ class FRouter {
         console.log('The method currentHash is executed.')
 
         let hash = window.location.hash
-        let index = hash.indexOf('#')
+        // let index = hash.indexOf('#')
         
-        console.log(hash)
-        console.log(index)
-
-        return hash.slice(index + 1)
+        return hash
     }
 
     initHistory () {
