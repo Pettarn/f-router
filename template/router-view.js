@@ -14,6 +14,12 @@ export default {
         let h = parent.$createElement
         let hash = parent.$router.currentHash
 
+        if(hash[0] === '#') {
+            hash = hash.split('')
+            hash.shift()
+            hash = hash.join('')
+        }
+
         console.log('router-view is normal.')
 
         let options = {}

@@ -41,6 +41,13 @@
       // router-view will be rendered as matched component 
       var h = parent.$createElement;
       var hash = parent.$router.currentHash;
+
+      if (hash[0] === '#') {
+        hash = hash.split('');
+        hash.shift();
+        hash = hash.join('');
+      }
+
       console.log('router-view is normal.');
       var options = {};
 
