@@ -50,7 +50,7 @@ export default {
                 }
 
                 if (matched[matched.length-1].redirect) {
-                    location.hash.replace(matched[matched.length-1].path, matched[matched.length-1].redirect)
+                    location.hash = location.hash.replace(matched[matched.length-1].path, matched[matched.length-1].redirect)
                     return renderCore()
                 }
 
@@ -82,7 +82,7 @@ export default {
                 })
 
                 if (matched[matched.length-1].redirect) {
-                    location.hash.replace(matched[matched.length-1].path, matched[matched.length-1].redirect)
+                    location.hash = location.hash.replace(matched[matched.length-1].path, matched[matched.length-1].redirect)
                     return renderCore()
                 }
 
