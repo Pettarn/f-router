@@ -39,7 +39,6 @@
       var parent = _ref.parent,
           data = _ref.data;
       // router-view will be rendered as matched component 
-      var h = parent.$createElement;
       var hash = parent.$router.currentHash;
 
       if (hash[0] === '#') {
@@ -117,7 +116,7 @@
       };
 
       renderCore();
-      return h(options.component);
+      return _(options.component);
     }
   };
 

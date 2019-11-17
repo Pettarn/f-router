@@ -11,7 +11,6 @@ export default {
     render(_, { parent, data }) {
 
         // router-view will be rendered as matched component 
-        let h = parent.$createElement
         let hash = parent.$router.currentHash
 
         if(hash[0] === '#') {
@@ -100,7 +99,7 @@ export default {
         
         renderCore()
 
-        return h(options.component)
+        return _(options.component)
 
     }
 }
