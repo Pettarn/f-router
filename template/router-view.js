@@ -23,9 +23,11 @@ export default {
 
         let renderCore = () => {
             // the x level routeMap and hash  match
+
+            console.log(parent._childrenMap)
+
             if (!parent._childrenMap) {
                 let currentMap = parent.$router.routeMap
-
                 let matched = []
                 currentMap.forEach(item => {
                     let index = hash.indexOf(item.path)
@@ -46,8 +48,8 @@ export default {
                 }
 
                 if (matched[matched.length-1].children) {
-                    data._childrenMap = matched[matched.length-1].children
-                    data._hashChip = matched[matched.length-1].path
+                    parent._childrenMap = matched[matched.length-1].children
+                    parent._hashChip = matched[matched.length-1].path
                 }
 
                 options.component = matched[matched.length-1].component
@@ -78,8 +80,8 @@ export default {
                 }
 
                 if (matched[matched.length-1].children) {
-                    data._childrenMap = matched[matched.length-1].children
-                    data._hashChip = matched[matched.length-1].path
+                    parent._childrenMap = matched[matched.length-1].children
+                    parent._hashChip = matched[matched.length-1].path
                 }
 
                 options.component = matched[matched.length-1].component
