@@ -10,6 +10,8 @@ export default {
 
     render(_, { parent, data }) {
 
+        console.log(parent)
+        console.log(data)
         // router-view will be rendered as matched component 
         let hash = parent.$router.currentHash
 
@@ -23,9 +25,6 @@ export default {
 
         let renderCore = () => {
             // the x level routeMap and hash  match
-
-            console.log(parent._childrenMap)
-
             if (!parent._childrenMap) {
                 let currentMap = parent.$router.routeMap
                 let matched = []
