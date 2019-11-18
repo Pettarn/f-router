@@ -38,7 +38,9 @@
     render: function render(_, _ref) {
       var parent = _ref.parent,
           data = _ref.data;
-      // router-view will be rendered as matched component 
+      console.log(parent);
+      console.log(data); // router-view will be rendered as matched component 
+
       var hash = parent.$router.currentHash;
 
       if (hash[0] === '#') {
@@ -51,8 +53,6 @@
 
       var renderCore = function renderCore() {
         // the x level routeMap and hash  match
-        console.log(parent._childrenMap);
-
         if (!parent._childrenMap) {
           var currentMap = parent.$router.routeMap;
           var matched = [];
