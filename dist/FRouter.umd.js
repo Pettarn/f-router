@@ -47,15 +47,12 @@
         hash = hash.join('');
       }
 
-      console.log('router-view is normal.');
       var options = {};
 
       var renderCore = function renderCore() {
         // the x level routeMap and hash  match
         if (!parent._childrenMap) {
           var currentMap = parent.$router.routeMap;
-          console.log(hash);
-          console.log(currentMap);
           var matched = [];
           currentMap.forEach(function (item) {
             var index = hash.indexOf(item.path);
@@ -63,16 +60,14 @@
             if (index === 0) {
               matched.push(item);
             }
-          });
-          console.log(matched); // matched nothing
+          }); // matched nothing
 
           if (!matched[0]) {
-            console.log('rendered nothing.');
             options.component = null;
           }
 
           if (matched[matched.length - 1].redirect) {
-            location.hash = location.hash.replace(matched[matched.length - 1].path, matched[matched.length - 1].redirect);
+            location.hash = location.hash !== '' ? location.hash.replace(matched[matched.length - 1].path, matched[matched.length - 1].redirect) : location.hash.replace(matched[matched.length - 1].path, '#' + matched[matched.length - 1].redirect);
             return renderCore();
           }
 
@@ -81,7 +76,6 @@
             data._hashChip = matched[matched.length - 1].path;
           }
 
-          console.log('rendered something.');
           options.component = matched[matched.length - 1].component;
         } else {
           var _currentMap = parent._childrenMap;
@@ -101,7 +95,7 @@
           });
 
           if (_matched[_matched.length - 1].redirect) {
-            location.hash = location.hash.replace(_matched[_matched.length - 1].path, _matched[_matched.length - 1].redirect);
+            location.hash = location.hash !== '' ? location.hash.replace(_matched[_matched.length - 1].path, _matched[_matched.length - 1].redirect) : location.hash.replace(_matched[_matched.length - 1].path, '#' + _matched[_matched.length - 1].redirect);
             return renderCore();
           }
 
@@ -110,7 +104,6 @@
             data._hashChip = _matched[_matched.length - 1].path;
           }
 
-          console.log('rendered something.');
           options.component = _matched[_matched.length - 1].component;
         }
       };

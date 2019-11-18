@@ -19,17 +19,12 @@ export default {
             hash = hash.join('')
         }
 
-        console.log('router-view is normal.')
-
         let options = {}
 
         let renderCore = () => {
             // the x level routeMap and hash  match
             if (!parent._childrenMap) {
                 let currentMap = parent.$router.routeMap
-
-                console.log(hash)
-                console.log(currentMap)
 
                 let matched = []
                 currentMap.forEach(item => {
@@ -39,18 +34,15 @@ export default {
                     }
                 })
 
-                console.log(matched)
-
                 // matched nothing
                 if (!matched[0]) {
-
-                    console.log('rendered nothing.')
-
                     options.component = null
                 }
 
                 if (matched[matched.length-1].redirect) {
-                    location.hash = location.hash.replace(matched[matched.length-1].path, matched[matched.length-1].redirect)
+                    location.hash = location.hash !== '' 
+                    ? location.hash.replace(matched[matched.length-1].path, matched[matched.length-1].redirect)
+                    : location.hash.replace(matched[matched.length-1].path, '#' + matched[matched.length-1].redirect)
                     return renderCore()
                 }
 
@@ -59,12 +51,7 @@ export default {
                     data._hashChip = matched[matched.length-1].path
                 }
 
-                console.log('rendered something.')
-
-                
                 options.component = matched[matched.length-1].component
-
-
             } else {
                 let currentMap = parent._childrenMap
                 let parentHashChip = parent._hashChip
@@ -82,7 +69,9 @@ export default {
                 })
 
                 if (matched[matched.length-1].redirect) {
-                    location.hash = location.hash.replace(matched[matched.length-1].path, matched[matched.length-1].redirect)
+                    location.hash = location.hash !== '' 
+                    ? location.hash.replace(matched[matched.length-1].path, matched[matched.length-1].redirect)
+                    : location.hash.replace(matched[matched.length-1].path, '#' + matched[matched.length-1].redirect)
                     return renderCore()
                 }
 
@@ -90,8 +79,6 @@ export default {
                     data._childrenMap = matched[matched.length-1].children
                     data._hashChip = matched[matched.length-1].path
                 }
-
-                console.log('rendered something.')
 
                 options.component = matched[matched.length-1].component
             }
