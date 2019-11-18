@@ -1,6 +1,6 @@
 {
   "name": "@pettarn/f-router",
-  "version": "1.1.45",
+  "version": "1.1.46",
   "description": "",
   "main": "dist/FRouter.umd.js",
   "scripts": {
