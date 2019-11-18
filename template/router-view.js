@@ -59,13 +59,17 @@ export default {
                 if (parentHashChip[-1] !== '/') {
                     parentHashChip += '/'
                 }
-
+                
                 currentMap.forEach(item => {
                     let index = hash.indexOf(parentHashChip + item.path)
                     if (index !== -1) {
                         matched.push(item)
                     }
                 })
+                
+                console.log(currentMap)
+                console.log(parentHashChip)
+                console.log(matched)
 
                 if (matched[matched.length-1].redirect) {
                     hash = hash.replace(matched[matched.length-1].path, matched[matched.length-1].redirect)

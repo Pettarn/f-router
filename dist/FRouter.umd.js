@@ -95,6 +95,10 @@
             }
           });
 
+          console.log(_currentMap);
+          console.log(parentHashChip);
+          console.log(_matched);
+
           if (_matched[_matched.length - 1].redirect) {
             hash = hash.replace(_matched[_matched.length - 1].path, _matched[_matched.length - 1].redirect);
             location.hash = '#' + hash;
