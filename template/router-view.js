@@ -40,9 +40,8 @@ export default {
                 }
 
                 if (matched[matched.length-1].redirect) {
-                    location.hash = location.hash !== '' 
-                    ? location.hash.replace(matched[matched.length-1].path, matched[matched.length-1].redirect)
-                    : location.hash.replace(matched[matched.length-1].path, '#' + matched[matched.length-1].redirect)
+                    hash = hash.replace(matched[matched.length-1].path, matched[matched.length-1].redirect)
+                    location.hash = '#' + hash
                     return renderCore()
                 }
 
@@ -69,9 +68,8 @@ export default {
                 })
 
                 if (matched[matched.length-1].redirect) {
-                    location.hash = location.hash !== '' 
-                    ? location.hash.replace(matched[matched.length-1].path, matched[matched.length-1].redirect)
-                    : location.hash.replace(matched[matched.length-1].path, '#' + matched[matched.length-1].redirect)
+                    hash = hash.replace(matched[matched.length-1].path, matched[matched.length-1].redirect)
+                    location.hash = '#' + hash
                     return renderCore()
                 }
 
