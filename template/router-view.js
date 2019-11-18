@@ -12,6 +12,7 @@ export default {
 
         console.log(parent)
         console.log(data)
+        console.log(parent._childrenMap)
         // router-view will be rendered as matched component 
         let hash = parent.$router.currentHash
 

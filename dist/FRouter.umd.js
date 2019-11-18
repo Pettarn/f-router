@@ -39,7 +39,8 @@
       var parent = _ref.parent,
           data = _ref.data;
       console.log(parent);
-      console.log(data); // router-view will be rendered as matched component 
+      console.log(data);
+      console.log(parent._childrenMap); // router-view will be rendered as matched component 
 
       var hash = parent.$router.currentHash;
 
