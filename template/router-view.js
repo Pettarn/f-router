@@ -10,12 +10,10 @@ export default {
 
     render(_, { parent, data }) {
 
-        
-        for (let key in parent) {
-            console.log(parent[key])
-        }
         console.log(data)
-        console.log(parent._childrenMap)
+        console.log(parent.VueComponent)
+        console.log(parent.$el)
+        console.log(parent.VueComponent._childrenMap)
         // router-view will be rendered as matched component 
         let hash = parent.$router.currentHash
 
