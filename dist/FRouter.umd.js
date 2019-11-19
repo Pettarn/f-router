@@ -74,13 +74,13 @@
           }
 
           if (matched[matched.length - 1].children) {
-            Object.defineProperty(parent, '_childrenMap', {
+            Object.defineProperty(data, '_childrenMap', {
               value: matched[matched.length - 1].children
             });
-            Object.defineProperty(parent, '_hashChip', {
+            Object.defineProperty(data, '_hashChip', {
               value: matched[matched.length - 1].path
             });
-            console.log(parent._childrenMap); // parent._childrenMap = matched[matched.length-1].children
+            console.log(data._childrenMap); // parent._childrenMap = matched[matched.length-1].children
             // parent._hashChip = matched[matched.length-1].path
           }
 
@@ -113,10 +113,10 @@
           }
 
           if (_matched[_matched.length - 1].children) {
-            Object.defineProperty(parent, '_childrenMap', {
+            Object.defineProperty(data, '_childrenMap', {
               value: _matched[_matched.length - 1].children
             });
-            Object.defineProperty(parent, '_hashChip', {
+            Object.defineProperty(data, '_hashChip', {
               value: _matched[_matched.length - 1].path
             }); // parent._childrenMap = matched[matched.length-1].children
             // parent._hashChip = matched[matched.length-1].path

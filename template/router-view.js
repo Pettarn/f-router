@@ -25,6 +25,8 @@ export default {
 
         let renderCore = () => {
             // the x level routeMap and hash  match
+
+
             if (!parent._childrenMap) {
                 let currentMap = parent.$router.routeMap
                 let matched = []
@@ -49,14 +51,14 @@ export default {
 
                 if (matched[matched.length-1].children) {
 
-                    Object.defineProperty(parent, '_childrenMap', {
+                    Object.defineProperty(data, '_childrenMap', {
                         value: matched[matched.length-1].children
                     })
-                    Object.defineProperty(parent, '_hashChip', {
+                    Object.defineProperty(data, '_hashChip', {
                         value: matched[matched.length-1].path
                     })
 
-                    console.log(parent._childrenMap)
+                    console.log(data._childrenMap)
 
                     // parent._childrenMap = matched[matched.length-1].children
                     // parent._hashChip = matched[matched.length-1].path
@@ -91,10 +93,10 @@ export default {
 
                 if (matched[matched.length-1].children) {
 
-                    Object.defineProperty(parent, '_childrenMap', {
+                    Object.defineProperty(data, '_childrenMap', {
                         value: matched[matched.length-1].children
                     })
-                    Object.defineProperty(parent, '_hashChip', {
+                    Object.defineProperty(data, '_hashChip', {
                         value: matched[matched.length-1].path
                     })
 
