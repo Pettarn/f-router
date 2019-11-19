@@ -35,11 +35,12 @@
         "default": 'default'
       }
     },
+    data: function data() {},
     render: function render(_, _ref) {
       var parent = _ref.parent,
-          data = _ref.data;
-      console.log(parent.$data); // router-view will be rendered as matched component 
-
+          data = _ref.data,
+          children = _ref.children;
+      // router-view will be rendered as matched component 
       var hash = parent.$router.currentHash;
 
       if (hash[0] === '#') {
@@ -126,7 +127,8 @@
       };
 
       renderCore();
-      return _(options.component, data);
+      console.log(data);
+      return _(options.component, data, children);
     }
   };
 

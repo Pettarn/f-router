@@ -7,10 +7,10 @@ export default {
             default: 'default'
         }
     },
+    data () {
 
-    render(_, { parent, data }) {
-
-        console.log(parent.$data)
+    },
+    render(_, { parent, data, children }) {
 
         // router-view will be rendered as matched component 
         let hash = parent.$router.currentHash
@@ -25,8 +25,6 @@ export default {
 
         let renderCore = () => {
             // the x level routeMap and hash  match
-
-
             if (!parent.$data._childrenMap) {
                 let currentMap = parent.$router.routeMap
                 let matched = []
@@ -47,7 +45,6 @@ export default {
                     location.hash = '#' + hash
                     return renderCore()
                 }
-
 
                 if (matched[matched.length-1].children) {
 
@@ -108,7 +105,9 @@ export default {
         
         renderCore()
 
-        return _(options.component, data)
+        console.log(data)
+
+        return _(options.component, data, children)
 
     }
 }
