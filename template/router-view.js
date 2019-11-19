@@ -11,9 +11,7 @@ export default {
     render(_, { parent, data }) {
 
         console.log(data)
-        console.log(parent.VueComponent)
-        console.log(parent.$el)
-        console.log(parent.VueComponent._childrenMap)
+        console.log(typeof parent)
         // router-view will be rendered as matched component 
         let hash = parent.$router.currentHash
 
