@@ -38,8 +38,7 @@
     data: function data() {},
     render: function render(_, _ref) {
       var parent = _ref.parent,
-          data = _ref.data,
-          children = _ref.children;
+          ref = _ref.ref;
       // router-view will be rendered as matched component 
       var hash = parent.$router.currentHash;
 
@@ -53,7 +52,7 @@
 
       var renderCore = function renderCore() {
         // the x level routeMap and hash  match
-        if (!parent.$data._childrenMap) {
+        if (!parent.$ref._childrenMap) {
           var currentMap = parent.$router.routeMap;
           var matched = [];
           currentMap.forEach(function (item) {
@@ -75,10 +74,10 @@
           }
 
           if (matched[matched.length - 1].children) {
-            Object.defineProperty(data, '_childrenMap', {
+            Object.defineProperty(ref, '_childrenMap', {
               value: matched[matched.length - 1].children
             });
-            Object.defineProperty(data, '_hashChip', {
+            Object.defineProperty(ref, '_hashChip', {
               value: matched[matched.length - 1].path
             }); // parent._childrenMap = matched[matched.length-1].children
             // parent._hashChip = matched[matched.length-1].path
@@ -86,8 +85,8 @@
 
           options.component = matched[matched.length - 1].component;
         } else {
-          var _currentMap = parent.$data._childrenMap;
-          var parentHashChip = parent.$data._hashChip;
+          var _currentMap = parent.$ref._childrenMap;
+          var parentHashChip = parent.$ref._hashChip;
           var _matched = [];
 
           if (parentHashChip[-1] !== '/') {
@@ -113,10 +112,10 @@
           }
 
           if (_matched[_matched.length - 1].children) {
-            Object.defineProperty(data, '_childrenMap', {
+            Object.defineProperty(ref, '_childrenMap', {
               value: _matched[_matched.length - 1].children
             });
-            Object.defineProperty(data, '_hashChip', {
+            Object.defineProperty(ref, '_hashChip', {
               value: _matched[_matched.length - 1].path
             }); // parent._childrenMap = matched[matched.length-1].children
             // parent._hashChip = matched[matched.length-1].path
@@ -127,8 +126,7 @@
       };
 
       renderCore();
-      console.log(data);
-      return _(options.component, data, children);
+      return _(options.component);
     }
   };
 

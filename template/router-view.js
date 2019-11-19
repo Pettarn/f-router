@@ -10,7 +10,7 @@ export default {
     data () {
 
     },
-    render(_, { parent, data, children }) {
+    render(_, { parent, ref }) {
 
         // router-view will be rendered as matched component 
         let hash = parent.$router.currentHash
@@ -25,7 +25,7 @@ export default {
 
         let renderCore = () => {
             // the x level routeMap and hash  match
-            if (!parent.$data._childrenMap) {
+            if (!parent.$ref._childrenMap) {
                 let currentMap = parent.$router.routeMap
                 let matched = []
                 currentMap.forEach(item => {
@@ -48,10 +48,10 @@ export default {
 
                 if (matched[matched.length-1].children) {
 
-                    Object.defineProperty(data, '_childrenMap', {
+                    Object.defineProperty(ref, '_childrenMap', {
                         value: matched[matched.length-1].children
                     })
-                    Object.defineProperty(data, '_hashChip', {
+                    Object.defineProperty(ref, '_hashChip', {
                         value: matched[matched.length-1].path
                     })
 
@@ -61,8 +61,8 @@ export default {
 
                 options.component = matched[matched.length-1].component
             } else {
-                let currentMap = parent.$data._childrenMap
-                let parentHashChip = parent.$data._hashChip
+                let currentMap = parent.$ref._childrenMap
+                let parentHashChip = parent.$ref._hashChip
                 let matched = []
 
                 if (parentHashChip[-1] !== '/') {
@@ -88,10 +88,10 @@ export default {
 
                 if (matched[matched.length-1].children) {
 
-                    Object.defineProperty(data, '_childrenMap', {
+                    Object.defineProperty(ref, '_childrenMap', {
                         value: matched[matched.length-1].children
                     })
-                    Object.defineProperty(data, '_hashChip', {
+                    Object.defineProperty(ref, '_hashChip', {
                         value: matched[matched.length-1].path
                     })
 
@@ -105,9 +105,7 @@ export default {
         
         renderCore()
 
-        console.log(data)
-
-        return _(options.component, data, children)
+        return _(options.component)
 
     }
 }
