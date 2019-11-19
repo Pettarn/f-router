@@ -52,7 +52,7 @@
 
       var renderCore = function renderCore() {
         // the x level routeMap and hash  match
-        if (!parent.data._childrenMap) {
+        if (!parent.$data._childrenMap) {
           var currentMap = parent.$router.routeMap;
           var matched = [];
           currentMap.forEach(function (item) {
@@ -86,8 +86,8 @@
 
           options.component = matched[matched.length - 1].component;
         } else {
-          var _currentMap = parent.data._childrenMap;
-          var parentHashChip = parent.data._hashChip;
+          var _currentMap = parent.$data._childrenMap;
+          var parentHashChip = parent.$data._hashChip;
           var _matched = [];
 
           if (parentHashChip[-1] !== '/') {

@@ -27,7 +27,7 @@ export default {
             // the x level routeMap and hash  match
 
 
-            if (!parent.data._childrenMap) {
+            if (!parent.$data._childrenMap) {
                 let currentMap = parent.$router.routeMap
                 let matched = []
                 currentMap.forEach(item => {
@@ -66,8 +66,8 @@ export default {
 
                 options.component = matched[matched.length-1].component
             } else {
-                let currentMap = parent.data._childrenMap
-                let parentHashChip = parent.data._hashChip
+                let currentMap = parent.$data._childrenMap
+                let parentHashChip = parent.$data._hashChip
                 let matched = []
 
                 if (parentHashChip[-1] !== '/') {
