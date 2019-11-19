@@ -4,20 +4,6 @@
   (global = global || self, global.FRouter = factory());
 }(this, function () { 'use strict';
 
-  function _typeof(obj) {
-    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-      _typeof = function (obj) {
-        return typeof obj;
-      };
-    } else {
-      _typeof = function (obj) {
-        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-      };
-    }
-
-    return _typeof(obj);
-  }
-
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
@@ -52,8 +38,7 @@
     render: function render(_, _ref) {
       var parent = _ref.parent,
           data = _ref.data;
-      console.log(data);
-      console.log(_typeof(parent)); // router-view will be rendered as matched component 
+      console.log(parent._childrenMap); // router-view will be rendered as matched component 
 
       var hash = parent.$router.currentHash;
 
