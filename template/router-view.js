@@ -11,7 +11,6 @@ export default {
     render(_, { parent, data }) {
 
         
-        console.log(parent[_childrenMap])
         for (let key in parent) {
             console.log(parent[key])
         }
