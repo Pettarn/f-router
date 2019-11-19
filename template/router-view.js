@@ -10,7 +10,7 @@ export default {
 
     render(_, { parent, data }) {
 
-        console.log(parent._childrenMap)
+        console.log(parent)
 
         // router-view will be rendered as matched component 
         let hash = parent.$router.currentHash
