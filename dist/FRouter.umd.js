@@ -89,8 +89,14 @@
           }
 
           if (matched[matched.length - 1].children) {
-            parent._childrenMap = matched[matched.length - 1].children;
-            parent._hashChip = matched[matched.length - 1].path;
+            Object.defineProperty(parent, '_childrenMap', {
+              value: matched[matched.length - 1].children
+            });
+            Object.defineProperty(parent, '_hashChip', {
+              value: matched[matched.length - 1].path
+            });
+            console.log(parent._childrenMap); // parent._childrenMap = matched[matched.length-1].children
+            // parent._hashChip = matched[matched.length-1].path
           }
 
           options.component = matched[matched.length - 1].component;
@@ -122,8 +128,13 @@
           }
 
           if (_matched[_matched.length - 1].children) {
-            parent._childrenMap = _matched[_matched.length - 1].children;
-            parent._hashChip = _matched[_matched.length - 1].path;
+            Object.defineProperty(parent, '_childrenMap', {
+              value: _matched[_matched.length - 1].children
+            });
+            Object.defineProperty(parent, '_hashChip', {
+              value: _matched[_matched.length - 1].path
+            }); // parent._childrenMap = matched[matched.length-1].children
+            // parent._hashChip = matched[matched.length-1].path
           }
 
           options.component = _matched[_matched.length - 1].component;
