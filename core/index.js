@@ -16,8 +16,6 @@ class FRouter {
 
     get currentHash () {
 
-        console.log('The method currentHash is executed.')
-
         let hash = window.location.hash
         // let index = hash.indexOf('#')
         

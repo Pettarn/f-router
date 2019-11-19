@@ -10,7 +10,7 @@ export default {
 
     render(_, { parent, data }) {
 
-        console.log(parent)
+        console.log(parent.$data)
 
         // router-view will be rendered as matched component 
         let hash = parent.$router.currentHash
@@ -57,8 +57,6 @@ export default {
                     Object.defineProperty(data, '_hashChip', {
                         value: matched[matched.length-1].path
                     })
-
-                    console.log(data._childrenMap)
 
                     // parent._childrenMap = matched[matched.length-1].children
                     // parent._hashChip = matched[matched.length-1].path

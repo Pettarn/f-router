@@ -38,7 +38,7 @@
     render: function render(_, _ref) {
       var parent = _ref.parent,
           data = _ref.data;
-      console.log(parent); // router-view will be rendered as matched component 
+      console.log(parent.$data); // router-view will be rendered as matched component 
 
       var hash = parent.$router.currentHash;
 
@@ -79,8 +79,7 @@
             });
             Object.defineProperty(data, '_hashChip', {
               value: matched[matched.length - 1].path
-            });
-            console.log(data._childrenMap); // parent._childrenMap = matched[matched.length-1].children
+            }); // parent._childrenMap = matched[matched.length-1].children
             // parent._hashChip = matched[matched.length-1].path
           }
 
@@ -242,7 +241,6 @@
     }, {
       key: "currentHash",
       get: function get() {
-        console.log('The method currentHash is executed.');
         var hash = window.location.hash; // let index = hash.indexOf('#')
 
         return hash;
