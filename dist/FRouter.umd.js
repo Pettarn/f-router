@@ -37,8 +37,7 @@
     },
     data: function data() {},
     render: function render(_, _ref) {
-      var parent = _ref.parent,
-          children = _ref.children;
+      var parent = _ref.parent;
       console.log(parent); // router-view will be rendered as matched component 
 
       var hash = parent.$router.currentHash;
@@ -117,7 +116,7 @@
       };
 
       renderCore();
-      return _(options.component, data, children);
+      return _(options.component);
     }
   };
 
