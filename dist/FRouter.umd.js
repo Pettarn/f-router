@@ -38,9 +38,7 @@
     data: function data() {},
     render: function render(_, _ref) {
       var parent = _ref.parent,
-          props = _ref.props,
-          children = _ref.children,
-          data = _ref.data;
+          children = _ref.children;
       console.log(parent); // router-view will be rendered as matched component 
 
       var hash = parent.$router.currentHash;
@@ -55,7 +53,7 @@
 
       var renderCore = function renderCore() {
         // the x level routeMap and hash  match
-        if (!props._childrenMap) {
+        if (!parent._childrenMap) {
           var currentMap = parent.$router.routeMap;
           var matched = [];
           currentMap.forEach(function (item) {
@@ -77,8 +75,8 @@
           }
 
           if (matched[matched.length - 1].children) {
-            children.$props._childrenMap = matched[matched.length - 1].children;
-            children.$props._hashChip = matched[matched.length - 1].path;
+            parent.$children._childrenMap = matched[matched.length - 1].children;
+            parent.$children._hashChip = matched[matched.length - 1].path;
           }
 
           options.component = matched[matched.length - 1].component;
@@ -110,8 +108,8 @@
           }
 
           if (_matched[_matched.length - 1].children) {
-            children.$props._childrenMap = _matched[_matched.length - 1].children;
-            children.$props._hashChip = _matched[_matched.length - 1].path;
+            parent.$children._childrenMap = _matched[_matched.length - 1].children;
+            parent.$children._hashChip = _matched[_matched.length - 1].path;
           }
 
           options.component = _matched[_matched.length - 1].component;
