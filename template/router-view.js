@@ -10,7 +10,9 @@ export default {
     data () {
 
     },
-    render(_, { parent, ref }) {
+    render(_, { parent }) {
+
+        console.log(parent.$children._childrenMap)
 
         // router-view will be rendered as matched component 
         let hash = parent.$router.currentHash
@@ -25,7 +27,7 @@ export default {
 
         let renderCore = () => {
             // the x level routeMap and hash  match
-            if (!parent.$ref._childrenMap) {
+            if (!parent._childrenMap) {
                 let currentMap = parent.$router.routeMap
                 let matched = []
                 currentMap.forEach(item => {
@@ -47,16 +49,8 @@ export default {
                 }
 
                 if (matched[matched.length-1].children) {
-
-                    Object.defineProperty(ref, '_childrenMap', {
-                        value: matched[matched.length-1].children
-                    })
-                    Object.defineProperty(ref, '_hashChip', {
-                        value: matched[matched.length-1].path
-                    })
-
-                    // parent._childrenMap = matched[matched.length-1].children
-                    // parent._hashChip = matched[matched.length-1].path
+                    parent._childrenMap = matched[matched.length-1].children
+                    parent._hashChip = matched[matched.length-1].path
                 }
 
                 options.component = matched[matched.length-1].component
@@ -87,16 +81,8 @@ export default {
                 }
 
                 if (matched[matched.length-1].children) {
-
-                    Object.defineProperty(ref, '_childrenMap', {
-                        value: matched[matched.length-1].children
-                    })
-                    Object.defineProperty(ref, '_hashChip', {
-                        value: matched[matched.length-1].path
-                    })
-
-                    // parent._childrenMap = matched[matched.length-1].children
-                    // parent._hashChip = matched[matched.length-1].path
+                    parent.$children._childrenMap = matched[matched.length-1].children
+                    parent.$children._hashChip = matched[matched.length-1].path
                 }
 
                 options.component = matched[matched.length-1].component

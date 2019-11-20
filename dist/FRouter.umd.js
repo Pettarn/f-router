@@ -37,9 +37,9 @@
     },
     data: function data() {},
     render: function render(_, _ref) {
-      var parent = _ref.parent,
-          ref = _ref.ref;
-      // router-view will be rendered as matched component 
+      var parent = _ref.parent;
+      console.log(parent.$children._childrenMap); // router-view will be rendered as matched component 
+
       var hash = parent.$router.currentHash;
 
       if (hash[0] === '#') {
@@ -52,7 +52,7 @@
 
       var renderCore = function renderCore() {
         // the x level routeMap and hash  match
-        if (!parent.$ref._childrenMap) {
+        if (!parent._childrenMap) {
           var currentMap = parent.$router.routeMap;
           var matched = [];
           currentMap.forEach(function (item) {
@@ -74,13 +74,8 @@
           }
 
           if (matched[matched.length - 1].children) {
-            Object.defineProperty(ref, '_childrenMap', {
-              value: matched[matched.length - 1].children
-            });
-            Object.defineProperty(ref, '_hashChip', {
-              value: matched[matched.length - 1].path
-            }); // parent._childrenMap = matched[matched.length-1].children
-            // parent._hashChip = matched[matched.length-1].path
+            parent._childrenMap = matched[matched.length - 1].children;
+            parent._hashChip = matched[matched.length - 1].path;
           }
 
           options.component = matched[matched.length - 1].component;
@@ -112,13 +107,8 @@
           }
 
           if (_matched[_matched.length - 1].children) {
-            Object.defineProperty(ref, '_childrenMap', {
-              value: _matched[_matched.length - 1].children
-            });
-            Object.defineProperty(ref, '_hashChip', {
-              value: _matched[_matched.length - 1].path
-            }); // parent._childrenMap = matched[matched.length-1].children
-            // parent._hashChip = matched[matched.length-1].path
+            parent.$children._childrenMap = _matched[_matched.length - 1].children;
+            parent.$children._hashChip = _matched[_matched.length - 1].path;
           }
 
           options.component = _matched[_matched.length - 1].component;
