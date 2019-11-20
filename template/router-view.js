@@ -10,7 +10,7 @@ export default {
     data () {
 
     },
-    render(_, { parent, props, children }) {
+    render(_, { parent, props, children, data }) {
 
         console.log(parent)
 
@@ -91,7 +91,7 @@ export default {
         
         renderCore()
 
-        return _(options.component)
+        return _(options.component, data, children)
 
     }
 }
