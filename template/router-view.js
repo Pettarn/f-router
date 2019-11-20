@@ -10,9 +10,9 @@ export default {
     data () {
 
     },
-    render(_, { parent }) {
+    render(_, { parent, props, children }) {
 
-        console.log(parent.$children._childrenMap)
+        console.log(parent)
 
         // router-view will be rendered as matched component 
         let hash = parent.$router.currentHash
@@ -27,7 +27,7 @@ export default {
 
         let renderCore = () => {
             // the x level routeMap and hash  match
-            if (!parent._childrenMap) {
+            if (!props._childrenMap) {
                 let currentMap = parent.$router.routeMap
                 let matched = []
                 currentMap.forEach(item => {
@@ -49,14 +49,14 @@ export default {
                 }
 
                 if (matched[matched.length-1].children) {
-                    parent._childrenMap = matched[matched.length-1].children
-                    parent._hashChip = matched[matched.length-1].path
+                    children.$props._childrenMap = matched[matched.length-1].children
+                    children.$props._hashChip = matched[matched.length-1].path
                 }
 
                 options.component = matched[matched.length-1].component
             } else {
-                let currentMap = parent.$ref._childrenMap
-                let parentHashChip = parent.$ref._hashChip
+                let currentMap = props._childrenMap
+                let parentHashChip = props._hashChip
                 let matched = []
 
                 if (parentHashChip[-1] !== '/') {
@@ -81,8 +81,8 @@ export default {
                 }
 
                 if (matched[matched.length-1].children) {
-                    parent.$children._childrenMap = matched[matched.length-1].children
-                    parent.$children._hashChip = matched[matched.length-1].path
+                    children.$props._childrenMap = matched[matched.length-1].children
+                    children.$props._hashChip = matched[matched.length-1].path
                 }
 
                 options.component = matched[matched.length-1].component

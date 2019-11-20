@@ -37,8 +37,10 @@
     },
     data: function data() {},
     render: function render(_, _ref) {
-      var parent = _ref.parent;
-      console.log(parent.$children._childrenMap); // router-view will be rendered as matched component 
+      var parent = _ref.parent,
+          props = _ref.props,
+          children = _ref.children;
+      console.log(parent); // router-view will be rendered as matched component 
 
       var hash = parent.$router.currentHash;
 
@@ -52,7 +54,7 @@
 
       var renderCore = function renderCore() {
         // the x level routeMap and hash  match
-        if (!parent._childrenMap) {
+        if (!props._childrenMap) {
           var currentMap = parent.$router.routeMap;
           var matched = [];
           currentMap.forEach(function (item) {
@@ -74,14 +76,14 @@
           }
 
           if (matched[matched.length - 1].children) {
-            parent._childrenMap = matched[matched.length - 1].children;
-            parent._hashChip = matched[matched.length - 1].path;
+            children.$props._childrenMap = matched[matched.length - 1].children;
+            children.$props._hashChip = matched[matched.length - 1].path;
           }
 
           options.component = matched[matched.length - 1].component;
         } else {
-          var _currentMap = parent.$ref._childrenMap;
-          var parentHashChip = parent.$ref._hashChip;
+          var _currentMap = props._childrenMap;
+          var parentHashChip = props._hashChip;
           var _matched = [];
 
           if (parentHashChip[-1] !== '/') {
@@ -107,8 +109,8 @@
           }
 
           if (_matched[_matched.length - 1].children) {
-            parent.$children._childrenMap = _matched[_matched.length - 1].children;
-            parent.$children._hashChip = _matched[_matched.length - 1].path;
+            children.$props._childrenMap = _matched[_matched.length - 1].children;
+            children.$props._hashChip = _matched[_matched.length - 1].path;
           }
 
           options.component = _matched[_matched.length - 1].component;
