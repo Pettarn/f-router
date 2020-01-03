@@ -9,9 +9,12 @@ export default {
     },
     data () {
         return {
+            routerView: 1
         }
     },
-    render(_, { parent, data }) {
+    render(_, { parent }) {
+
+        console.log(parent)
 
         // router-view will be rendered as matched component 
         let hash = parent.$router.currentHash
@@ -26,7 +29,7 @@ export default {
 
         let renderCore = () => {
             // the x level routeMap and hash match
-            if (typeof parent.$vnode.data._childrenMap === undefined) {
+            if (typeof parent.$parent.$children._childrenMap === undefined) {
                 let currentMap = parent.$router.routeMap
                 let matched = []
                 currentMap.forEach(item => {
@@ -48,8 +51,8 @@ export default {
                 }
 
                 if (typeof matched[matched.length-1].children !== undefined) {
-                    data._childrenMap = matched[matched.length-1].children
-                    data._hashChip = matched[matched.length-1].path
+                    parent.$children._childrenMap = matched[matched.length-1].children
+                    parent.$children._hashChip = matched[matched.length-1].path
                 }
 
                 options.component = matched[matched.length-1].component
@@ -69,6 +72,10 @@ export default {
                     }
                 })
                 
+                console.log(currentMap)
+                console.log(parentHashChip)
+                console.log(matched)
+
                 if (matched[matched.length-1].redirect) {
                     hash = hash.replace(matched[matched.length-1].path, matched[matched.length-1].redirect)
                     location.hash = '#' + hash
@@ -76,8 +83,8 @@ export default {
                 }
 
                 if (matched[matched.length-1].children) {
-                    data._childrenMap = matched[matched.length-1].children
-                    data._hashChip = matched[matched.length-1].path
+                    parent.$vnode._childrenMap = matched[matched.length-1].children
+                    parent.$children._hashChip = matched[matched.length-1].path
                 }
 
                 options.component = matched[matched.length-1].component

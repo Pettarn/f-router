@@ -49,11 +49,13 @@
         "default": 'default'
       }
     },
-    data: function data() {},
+    data: function data() {
+      return {};
+    },
     render: function render(_, _ref) {
-      var parent = _ref.parent;
-      console.log(parent); // router-view will be rendered as matched component 
-
+      var parent = _ref.parent,
+          data = _ref.data;
+      // router-view will be rendered as matched component 
       var hash = parent.$router.currentHash;
 
       if (hash[0] === '#') {
@@ -66,7 +68,7 @@
 
       var renderCore = function renderCore() {
         // the x level routeMap and hash match
-        if (_typeof(parent.$parent.$children._childrenMap) === undefined) {
+        if (_typeof(parent.$vnode.data._childrenMap) === undefined) {
           var currentMap = parent.$router.routeMap;
           var matched = [];
           currentMap.forEach(function (item) {
@@ -88,17 +90,17 @@
           }
 
           if (_typeof(matched[matched.length - 1].children) !== undefined) {
-            parent.$children._childrenMap = matched[matched.length - 1].children;
-            parent.$children._hashChip = matched[matched.length - 1].path;
+            data._childrenMap = matched[matched.length - 1].children;
+            data._hashChip = matched[matched.length - 1].path;
           }
 
           options.component = matched[matched.length - 1].component;
         } else {
-          var _currentMap = parent.$parent.$children._childrenMap;
-          var parentHashChip = parent.$parent.$children._hashChip;
+          var _currentMap = parent.$vnode.data._childrenMap;
+          var parentHashChip = parent.$vnode.data._hashChip;
           var _matched = [];
 
-          if (parentHashChip[-1] !== '/') {
+          if (parentHashChip[parentHashChip.length - 1] !== '/') {
             parentHashChip += '/';
           }
 
@@ -110,10 +112,6 @@
             }
           });
 
-          console.log(_currentMap);
-          console.log(parentHashChip);
-          console.log(_matched);
-
           if (_matched[_matched.length - 1].redirect) {
             hash = hash.replace(_matched[_matched.length - 1].path, _matched[_matched.length - 1].redirect);
             location.hash = '#' + hash;
@@ -121,8 +119,8 @@
           }
 
           if (_matched[_matched.length - 1].children) {
-            parent.$children._childrenMap = _matched[_matched.length - 1].children;
-            parent.$children._hashChip = _matched[_matched.length - 1].path;
+            data._childrenMap = _matched[_matched.length - 1].children;
+            data._hashChip = _matched[_matched.length - 1].path;
           }
 
           options.component = _matched[_matched.length - 1].component;
