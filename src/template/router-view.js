@@ -16,6 +16,8 @@ export default {
         // router-view will be rendered as matched component 
         let hash = parent.$router.currentHash
 
+        console.log(hash)
+
         if (hash[0] === '#') {
             hash = hash.split('')
             hash.shift()
@@ -26,7 +28,7 @@ export default {
 
         let renderCore = () => {
             // the x level routeMap and hash match
-            if (typeof parent.$vnode.data._childrenMap === undefined) {
+            if (typeof parent.$data._childrenMap === undefined) {
                 let currentMap = parent.$router.routeMap
                 let matched = []
                 currentMap.forEach(item => {
@@ -54,9 +56,11 @@ export default {
 
                 options.component = matched[matched.length-1].component
             } else {
-                let currentMap = parent.$vnode.data._childrenMap
-                let parentHashChip = parent.$vnode.data._hashChip
+                let currentMap = parent.$data._childrenMap
+                let parentHashChip = parent.$data._hashChip
                 let matched = []
+
+                console.log(parent.$data)
 
                 if (parentHashChip[parentHashChip.length-1] !== '/') {
                     parentHashChip += '/'

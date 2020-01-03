@@ -57,6 +57,7 @@
           data = _ref.data;
       // router-view will be rendered as matched component 
       var hash = parent.$router.currentHash;
+      console.log(hash);
 
       if (hash[0] === '#') {
         hash = hash.split('');
@@ -68,7 +69,7 @@
 
       var renderCore = function renderCore() {
         // the x level routeMap and hash match
-        if (_typeof(parent.$vnode.data._childrenMap) === undefined) {
+        if (_typeof(parent.$data._childrenMap) === undefined) {
           var currentMap = parent.$router.routeMap;
           var matched = [];
           currentMap.forEach(function (item) {
@@ -96,9 +97,10 @@
 
           options.component = matched[matched.length - 1].component;
         } else {
-          var _currentMap = parent.$vnode.data._childrenMap;
-          var parentHashChip = parent.$vnode.data._hashChip;
+          var _currentMap = parent.$data._childrenMap;
+          var parentHashChip = parent.$data._hashChip;
           var _matched = [];
+          console.log(parent.$data);
 
           if (parentHashChip[parentHashChip.length - 1] !== '/') {
             parentHashChip += '/';
