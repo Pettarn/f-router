@@ -4,6 +4,20 @@
   (global = global || self, global.FRouter = factory());
 }(this, function () { 'use strict';
 
+  function _typeof(obj) {
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof = function (obj) {
+        return typeof obj;
+      };
+    } else {
+      _typeof = function (obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      };
+    }
+
+    return _typeof(obj);
+  }
+
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
@@ -51,8 +65,8 @@
       var options = {};
 
       var renderCore = function renderCore() {
-        // the x level routeMap and hash  match
-        if (!parent._childrenMap) {
+        // the x level routeMap and hash match
+        if (_typeof(parent.$parent.$children._childrenMap) === undefined) {
           var currentMap = parent.$router.routeMap;
           var matched = [];
           currentMap.forEach(function (item) {
@@ -73,15 +87,15 @@
             return renderCore();
           }
 
-          if (matched[matched.length - 1].children) {
+          if (_typeof(matched[matched.length - 1].children) !== undefined) {
             parent.$children._childrenMap = matched[matched.length - 1].children;
             parent.$children._hashChip = matched[matched.length - 1].path;
           }
 
           options.component = matched[matched.length - 1].component;
         } else {
-          var _currentMap = props._childrenMap;
-          var parentHashChip = props._hashChip;
+          var _currentMap = parent.$parent.$children._childrenMap;
+          var parentHashChip = parent.$parent.$children._hashChip;
           var _matched = [];
 
           if (parentHashChip[-1] !== '/') {
