@@ -57,7 +57,6 @@
           data = _ref.data;
       // router-view will be rendered as matched component 
       var hash = parent.$router.currentHash;
-      console.log(hash);
 
       if (hash[0] === '#') {
         hash = hash.split('');
@@ -65,10 +64,13 @@
         hash = hash.join('');
       }
 
+      console.log(hash);
       var options = {};
 
       var renderCore = function renderCore() {
         // the x level routeMap and hash match
+        console.log(parent.$data);
+
         if (_typeof(parent.$data._childrenMap) === undefined) {
           var currentMap = parent.$router.routeMap;
           var matched = [];
@@ -95,12 +97,13 @@
             data._hashChip = matched[matched.length - 1].path;
           }
 
+          options.data = data;
           options.component = matched[matched.length - 1].component;
         } else {
+          console.log(parent.$data);
           var _currentMap = parent.$data._childrenMap;
           var parentHashChip = parent.$data._hashChip;
           var _matched = [];
-          console.log(parent.$data);
 
           if (parentHashChip[parentHashChip.length - 1] !== '/') {
             parentHashChip += '/';
@@ -125,12 +128,13 @@
             data._hashChip = _matched[_matched.length - 1].path;
           }
 
+          options.data = data;
           options.component = _matched[_matched.length - 1].component;
         }
       };
 
       renderCore();
-      return _(options.component);
+      return _(options.component, options.data);
     }
   };
 
