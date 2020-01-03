@@ -26,8 +26,8 @@ export default {
         let options = {}
 
         let renderCore = () => {
-            // the x level routeMap and hash  match
-            if (!parent._childrenMap) {
+            // the x level routeMap and hash match
+            if (typeof parent.$parent.$children._childrenMap === undefined) {
                 let currentMap = parent.$router.routeMap
                 let matched = []
                 currentMap.forEach(item => {
@@ -48,15 +48,15 @@ export default {
                     return renderCore()
                 }
 
-                if (matched[matched.length-1].children) {
+                if (typeof matched[matched.length-1].children !== undefined) {
                     parent.$children._childrenMap = matched[matched.length-1].children
                     parent.$children._hashChip = matched[matched.length-1].path
                 }
 
                 options.component = matched[matched.length-1].component
             } else {
-                let currentMap = props._childrenMap
-                let parentHashChip = props._hashChip
+                let currentMap = parent.$parent.$children._childrenMap
+                let parentHashChip = parent.$parent.$children._hashChip
                 let matched = []
 
                 if (parentHashChip[-1] !== '/') {
