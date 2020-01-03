@@ -21,17 +21,11 @@ export default {
             hash.shift()
             hash = hash.join('')
         }
-        
-        console.log(hash)
 
         let options = {}
 
         let renderCore = () => {
-            // the x level routeMap and hash match
-            console.log(parent.$data)
-
-            if (typeof parent.$data._childrenMap === undefined) {
-
+            if (typeof parent.$vnode.data._childrenMap === 'undefined') {
                 let currentMap = parent.$router.routeMap
                 let matched = []
                 currentMap.forEach(item => {
@@ -42,8 +36,8 @@ export default {
                 })
 
                 // matched nothing
-                if (!matched[0]) {
-                    options.component = null
+                if (matched.length === 0) {
+                    return
                 }
 
                 if (matched[matched.length-1].redirect) {
@@ -52,19 +46,16 @@ export default {
                     return renderCore()
                 }
 
-                if (typeof matched[matched.length-1].children !== undefined) {
+                if (typeof matched[matched.length-1].children !== 'undefined') {
                     data._childrenMap = matched[matched.length-1].children
                     data._hashChip = matched[matched.length-1].path
                 }
 
                 options.data = data
-
                 options.component = matched[matched.length-1].component
             } else {
-                console.log(parent.$data)
-
-                let currentMap = parent.$data._childrenMap
-                let parentHashChip = parent.$data._hashChip
+                let currentMap = parent.$vnode.data._childrenMap
+                let parentHashChip = parent.$vnode.data._hashChip
                 let matched = []
 
                 if (parentHashChip[parentHashChip.length-1] !== '/') {
@@ -77,6 +68,10 @@ export default {
                         matched.push(item)
                     }
                 })
+
+                if (matched.length === 0) {
+                    return
+                }
                 
                 if (matched[matched.length-1].redirect) {
                     hash = hash.replace(matched[matched.length-1].path, matched[matched.length-1].redirect)

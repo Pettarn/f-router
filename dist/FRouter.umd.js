@@ -4,20 +4,6 @@
   (global = global || self, global.FRouter = factory());
 }(this, function () { 'use strict';
 
-  function _typeof(obj) {
-    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-      _typeof = function (obj) {
-        return typeof obj;
-      };
-    } else {
-      _typeof = function (obj) {
-        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-      };
-    }
-
-    return _typeof(obj);
-  }
-
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
@@ -64,14 +50,10 @@
         hash = hash.join('');
       }
 
-      console.log(hash);
       var options = {};
 
       var renderCore = function renderCore() {
-        // the x level routeMap and hash match
-        console.log(parent.$data);
-
-        if (_typeof(parent.$data._childrenMap) === undefined) {
+        if (typeof parent.$vnode.data._childrenMap === 'undefined') {
           var currentMap = parent.$router.routeMap;
           var matched = [];
           currentMap.forEach(function (item) {
@@ -82,8 +64,8 @@
             }
           }); // matched nothing
 
-          if (!matched[0]) {
-            options.component = null;
+          if (matched.length === 0) {
+            return;
           }
 
           if (matched[matched.length - 1].redirect) {
@@ -92,7 +74,7 @@
             return renderCore();
           }
 
-          if (_typeof(matched[matched.length - 1].children) !== undefined) {
+          if (typeof matched[matched.length - 1].children !== 'undefined') {
             data._childrenMap = matched[matched.length - 1].children;
             data._hashChip = matched[matched.length - 1].path;
           }
@@ -100,9 +82,8 @@
           options.data = data;
           options.component = matched[matched.length - 1].component;
         } else {
-          console.log(parent.$data);
-          var _currentMap = parent.$data._childrenMap;
-          var parentHashChip = parent.$data._hashChip;
+          var _currentMap = parent.$vnode.data._childrenMap;
+          var parentHashChip = parent.$vnode.data._hashChip;
           var _matched = [];
 
           if (parentHashChip[parentHashChip.length - 1] !== '/') {
@@ -116,6 +97,10 @@
               _matched.push(item);
             }
           });
+
+          if (_matched.length === 0) {
+            return;
+          }
 
           if (_matched[_matched.length - 1].redirect) {
             hash = hash.replace(_matched[_matched.length - 1].path, _matched[_matched.length - 1].redirect);
