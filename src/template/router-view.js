@@ -15,20 +15,23 @@ export default {
 
         // router-view will be rendered as matched component 
         let hash = parent.$router.currentHash
-
-        console.log(hash)
-
+        
         if (hash[0] === '#') {
             hash = hash.split('')
             hash.shift()
             hash = hash.join('')
         }
+        
+        console.log(hash)
 
         let options = {}
 
         let renderCore = () => {
             // the x level routeMap and hash match
+            console.log(parent.$data)
+
             if (typeof parent.$data._childrenMap === undefined) {
+
                 let currentMap = parent.$router.routeMap
                 let matched = []
                 currentMap.forEach(item => {
@@ -54,13 +57,15 @@ export default {
                     data._hashChip = matched[matched.length-1].path
                 }
 
+                options.data = data
+
                 options.component = matched[matched.length-1].component
             } else {
+                console.log(parent.$data)
+
                 let currentMap = parent.$data._childrenMap
                 let parentHashChip = parent.$data._hashChip
                 let matched = []
-
-                console.log(parent.$data)
 
                 if (parentHashChip[parentHashChip.length-1] !== '/') {
                     parentHashChip += '/'
@@ -84,13 +89,14 @@ export default {
                     data._hashChip = matched[matched.length-1].path
                 }
 
+                options.data = data
                 options.component = matched[matched.length-1].component
             }
         }
         
         renderCore()
 
-        return _(options.component)
+        return _(options.component, options.data)
 
     }
 }
