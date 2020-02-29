@@ -137,9 +137,15 @@
       }
     },
     render: function render(h, _ref) {
-      var props = _ref.props;
-      location.hash = props.to;
-      h(props.to, 'slot');
+      var props = _ref.props,
+          children = _ref.children,
+          data = _ref.data;
+      data.on = {
+        click: function click() {
+          location.hash = props.to;
+        }
+      };
+      h(props.tag, data, children);
     }
   };
 

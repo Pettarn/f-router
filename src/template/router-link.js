@@ -9,11 +9,19 @@ export default {
         tag: {
             type: String,
             default: 'a'
-        }
+        },
     },
-    render(h, { props }) {
-        location.hash = props.to
-        h(props.to, 'slot')
+    render(h, { props, children, data }) {
+        data.on = {
+            click () {
+                location.hash = props.to
+            }
+        }
+        h(
+            props.tag, 
+            data,
+            children
+        )
     },
 }
 
