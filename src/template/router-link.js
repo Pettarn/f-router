@@ -11,13 +11,14 @@ export default {
             default: 'a'
         },
     },
-    render(h, { props, children, data }) {
+    render(h, { props, data, children }) {
         data.on = {
             click () {
                 location.hash = props.to
             }
         }
-        h(
+        
+        return h(
             props.tag, 
             data,
             children
