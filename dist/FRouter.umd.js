@@ -123,6 +123,26 @@
     }
   };
 
+  var RouterLink = {
+    name: 'RouterLink',
+    functional: true,
+    props: {
+      to: {
+        type: String,
+        required: true
+      },
+      tag: {
+        type: String,
+        "default": 'a'
+      }
+    },
+    render: function render(h, _ref) {
+      var props = _ref.props;
+      location.hash = props.to;
+      h(props.to, 'slot');
+    }
+  };
+
   var isDef = function isDef(v) {
     return v !== undefined;
   };
@@ -146,6 +166,7 @@
       }
     });
     Vue.component('RouterView', RouterView);
+    Vue.component('RouterLink', RouterLink);
   };
 
   var History =

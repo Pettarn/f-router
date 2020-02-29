@@ -1,4 +1,5 @@
 import RouterView from '../template/router-view.js'
+import RouterLink from '../template/router-link.js'
 
 const isDef = v => v !== undefined
 
@@ -23,6 +24,7 @@ const install = function (Vue) {
     })
 
     Vue.component('RouterView', RouterView)
+    Vue.component('RouterLink', RouterLink)
     
 }
 
