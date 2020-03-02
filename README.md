@@ -5,21 +5,21 @@
 
 ***
 
-> `f-router ` is a router for Vue.js
+> `f-router` is a router for Vue.js
 
 ##  Feature
-***
+
 -   support router children
 -   router-link tag
 -   router-view tag
   
 
 ##  Install
-***
+
     npm install @pettarn/f-router
 
 ##  Quick Start
-***
+
 
     import Vue from 'vue'
     import FRouter from '@pettarn/f-router'
@@ -58,7 +58,7 @@
     export default router
 
 ##   App.vue
-***
+
     <template>
     <div id="app">
         <h3>Following is router render component.</h3>
@@ -67,12 +67,12 @@
     </template>
 
 ## router-link tag
-***
+
 
     <router-link to="/sex/a" tag="span">男</router-link>
     or
     <router-link to="/sex/b" tag="span">女</router-link>
 
 ## Standard
-***
-    MIT
+
+### MIT
