@@ -10,6 +10,7 @@
 ##  Feature
 
 -   support router children
+-   router redirect
 -   router-link tag
 -   router-view tag
   
