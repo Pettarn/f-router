@@ -3,8 +3,6 @@
 [![npm version](https://badge.fury.io/js/%40pettarn%2Ff-router.svg)](https://badge.fury.io/js/%40pettarn%2Ff-router)
 
 
-***
-
 > `f-router` is a router for Vue.js
 
 ##  Feature
@@ -13,7 +11,11 @@
 -   router redirect
 -   router-link tag
 -   router-view tag
-  
+
+## todo 
+-   make the npm package smaller
+-   need not to reload after change the location hash value to refresh the view
+-   router hooks 
 
 ##  Install
 
@@ -74,6 +76,3 @@
     or
     <router-link to="/sex/b" tag="span">女</router-link>
 
-## Standard
-
-### MIT
