@@ -1,3 +1,5 @@
+![演示](https://github.com/Pettarn/f-router/blob/master/gif/f-router.gif?raw=true)
+
 ##    __f-router__
 
 [![npm version](https://badge.fury.io/js/%40pettarn%2Ff-router.svg)](https://badge.fury.io/js/%40pettarn%2Ff-router)
